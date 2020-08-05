@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.alims.dao.MobileNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.bazl.alims.model.po.MobileNews" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="DECIMAL" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATETIME" property="updateDatetime" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+    <result column="USERID" property="userid" jdbcType="VARCHAR" />
+    <result column="CASEID" property="caseId" jdbcType="VARCHAR" />
+    <result column="USERORGID" property="userOrg" jdbcType="VARCHAR" />
+    <result column="MESSAGETYPE" property="messageType" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from MOBILE_NEWS
+    where ID = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.bazl.alims.model.po.MobileNews" >
+    insert into MOBILE_NEWS (ID,CASEID,TITLE, CONTENT,
+      STATE,  CREATE_DATETIME,
+      UPDATE_DATETIME, TYPE,USERID,  USERORGID,MESSAGETYPE)
+    values (#{id,jdbcType=VARCHAR},#{caseId,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+      #{content,jdbcType=VARCHAR}, #{state,jdbcType=DECIMAL},#{createDatetime,jdbcType=VARCHAR},
+      #{updateDatetime,jdbcType=VARCHAR}, #{type,jdbcType=DECIMAL},#{userid,jdbcType=VARCHAR},
+      #{userOrg,jdbcType=VARCHAR},#{messageType,jdbcType=DECIMAL})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bazl.alims.model.po.MobileNews" >
+     update MOBILE_NEWS
+     set TITLE = #{title},
+      CONTENT = #{content},
+      STATE = #{state},
+      CREATE_DATETIME = #{createDatetime},
+      UPDATE_DATETIME = #{updateDatetime},
+      TYPE = #{type},
+      USERID = #{userid},
+      CASEID = #{caseId},
+      USERORGID=#{userOrg},
+      MESSAGETYPE = #{messageType}
+    where ID = #{id}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select ID, TITLE, CONTENT, STATE, CREATE_DATETIME, UPDATE_DATETIME,
+    TYPE,USERID,CASEID,USERORGID,MESSAGETYPE
+    from MOBILE_NEWS
+    where ID = #{id}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ID, TITLE, CONTENT, STATE,  CREATE_DATETIME, UPDATE_DATETIME, 
+    TYPE,USERID,CASEID,USERORGID,MESSAGETYPE
+    from MOBILE_NEWS
+  </select>
+  <select id="getUserMobileNewsNumber" parameterType="String" resultType="java.util.HashMap">
+    SELECT
+      count(CASE WHEN  m.STATE IN('0')THEN 'un' END) AS NotReading,
+      count(CASE WHEN  m.STATE IN('1')THEN 'an' END) AS Reading
+    FROM
+      MOBILE_NEWS m
+    where
+      m.userid = #{0}
+  </select>
+  <select id="selectPageAll" parameterType="com.bazl.alims.model.po.MobileNews" resultMap="BaseResultMap">
+      select * from
+    (select rownum as rn, a.* from
+    (select t.* from MOBILE_NEWS t
+     where 1 = 1
+      <if test="null != title and  '' != title">
+      and t.TITLE like CONCAT(CONCAT('%',#{title}),'%')
+      </if>
+      <if test="null != state">
+        AND  t.STATE = #{state}
+      </if>
+     order by t.CREATE_DATETIME desc) a
+    where rownum &lt;=  #{rows})
+    where rn &gt; #{offset}
+  </select>
+
+  <select id="selectPageCount" parameterType="com.bazl.alims.model.po.MobileNews" resultType="int">
+    select count(t.id) from MOBILE_NEWS t WHERE   1 = 1
+    <if test="null != title and  '' != title">
+      and t.TITLE like CONCAT(CONCAT('%',#{title}),'%')
+    </if>
+    <if test="null != state">
+      AND  t.STATE = #{state}
+    </if>
+  </select>
+
+  <select id="selectCount" parameterType="com.bazl.alims.model.po.MobileNews" resultType="int">
+    select count(t.id) from MOBILE_NEWS t WHERE   1 = 1
+    AND t.TITLE = #{title}
+    AND  t.USERID = #{userid}
+  </select>
+
+</mapper>

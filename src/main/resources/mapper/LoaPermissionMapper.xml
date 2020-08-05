@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.alims.dao.LoaPermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.bazl.alims.model.LoaPermission" >
+    <id column="PERMISSION_ID" property="permissionId" jdbcType="VARCHAR" />
+    <result column="PERMISSION_NAME" property="permissionName" jdbcType="VARCHAR" />
+    <result column="PERMISSION_LINK" property="permissionLink" jdbcType="VARCHAR" />
+    <result column="ROOT_FLAG" property="rootFlag" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="ACTIVE_FLAG" property="activeFlag" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from LOA_PERMISSION
+    where PERMISSION_ID = #{permissionId,jdbcType=VARCHAR} and SUBSYSTEM_FLAG = '1'
+  </delete>
+  <insert id="insert" parameterType="com.bazl.alims.model.LoaPermission" >
+    insert into LOA_PERMISSION (PERMISSION_ID, PERMISSION_NAME, PERMISSION_LINK, 
+      ROOT_FLAG, PARENT_ID, ACTIVE_FLAG, 
+      CREATE_DATETIME, CREATE_PERSON)
+    values (#{permissionId,jdbcType=VARCHAR}, #{permissionName,jdbcType=VARCHAR}, #{permissionLink,jdbcType=VARCHAR}, 
+      #{rootFlag,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{activeFlag,jdbcType=VARCHAR}, 
+      #{createDatetime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.bazl.alims.model.LoaPermission" >
+    update LOA_PERMISSION
+    set PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
+      PERMISSION_LINK = #{permissionLink,jdbcType=VARCHAR},
+      ROOT_FLAG = #{rootFlag,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      ACTIVE_FLAG = #{activeFlag,jdbcType=VARCHAR},
+      CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      CREATE_PERSON = #{createPerson,jdbcType=VARCHAR}
+    where PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select PERMISSION_ID, PERMISSION_NAME, PERMISSION_LINK, ROOT_FLAG, PARENT_ID, ACTIVE_FLAG, 
+    CREATE_DATETIME, CREATE_PERSON
+    from LOA_PERMISSION
+    where PERMISSION_ID = #{permissionId,jdbcType=VARCHAR} and DELETE_FLAG='0' and SUBSYSTEM_FLAG = '1'
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select PERMISSION_ID, PERMISSION_NAME, PERMISSION_LINK, ROOT_FLAG, PARENT_ID, ACTIVE_FLAG, 
+    CREATE_DATETIME, CREATE_PERSON,ORDER_NO
+    from LOA_PERMISSION
+    where DELETE_FLAG='0' and SUBSYSTEM_FLAG = '1' order by ORDER_NO ASC
+  </select>
+  <select id="listByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select p.PERMISSION_ID, p.PERMISSION_NAME, p.PERMISSION_LINK, p.ROOT_FLAG, p.PARENT_ID, p.ACTIVE_FLAG,
+    p.CREATE_DATETIME, p.CREATE_PERSON
+    from LOA_PERMISSION p left join LOA_PERMISSION_RELATION pr on p.PERMISSION_ID=pr.PERMISSION_ID
+    where pr.ROLE_ID = #{roleId,jdbcType=VARCHAR} and p.DELETE_FLAG='0' and SUBSYSTEM_FLAG = '1'
+  </select>
+</mapper>

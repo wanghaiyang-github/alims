@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/scroll.css">
+    <link rel="stylesheet" href="../../css/button.css">
+    <link rel="stylesheet" href="../../css/form.css">
+    <link rel="stylesheet" href="../../css/table.css">
+    <link rel="stylesheet" href="../../css/pop.css">
+</head>
+
+<body>
+    <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">案件委托登记</a></li>
+        <li class="active">案件查询和补送</li>
+    </ol>
+
+    <div class="row Modular">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4 seachInputBox">
+                            <div class="form-group">
+                                <label>案件名称</label>
+                                <input type="text" class="form-control" placeholder="请输入案件名称">
+                            </div>
+                        </div>
+                        <div class="col-md-4 seachInputBox">
+                            <div class="form-group">
+                                <label>案件性质</label>
+                                <input type="text" class="form-control" placeholder="请输入案件性质">
+                            </div>
+                        </div>
+                        <div class="col-md-4 seachInputBox">
+                            <div class="form-group">
+                                <label>案件类型</label>
+                                <input type="text" class="form-control" placeholder="请输入案件类型">
+                            </div>
+                        </div>
+                        <div class="col-md-4 seachInputBox">
+                            <div class="form-group">
+                                <label>委托时间</label>
+                                <input type="text" class="form-control" placeholder="请输入委托时间">
+                            </div>
+                        </div>
+                        <div class="col-md-4 seachInputBox">
+                            <div class="form-group">
+                                <label>委托人</label>
+                                <input type="text" class="form-control" placeholder="请输入委托人">
+                            </div>
+                        </div>
+                        <div class="col-md-4 seachInputBox">
+                            <div class="form-group">
+                                <label>案件编号</label>
+                                <input type="text" class="form-control" placeholder="请输入案件编号">
+                            </div>
+                        </div>
+                        <div class="col-md-4 seachInputBox">
+                            <div class="form-group">
+                                <label>受理状态</label>
+                                <div class="select">
+                                    <select class="form-control" required name="acceptingState">
+                                        <option value="" disabled selected hidden>请选择受理状态</option>
+                                        <option value="未受理" selected>未受理</option>
+                                        <option value="已受理">已受理</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 seachInputBox">
+                            <div class="form-group seachButtonBox">
+                                <button class="btn btn-blue">查询</button>
+                                <button class="btn btn-blue-border">重置</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row Modular Accepted hidden">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading blue">
+                    <div>已受理案件</div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-bordered bigTable">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>案件名称</th>
+                                <th>案件编号</th>
+                                <th>案件类别</th>
+                                <th>案件性质</th>
+                                <th>案发时间</th>
+                                <th>委托时间</th>
+                                <th>案件状态</th>
+                                <th>委托人</th>
+                                <th>操作</th>
+                                <th>下载</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>序号</td>
+                                <td>案件名称</td>
+                                <td>案件编号</td>
+                                <td>案件类别</td>
+                                <td>案件性质</td>
+                                <td>案发时间</td>
+                                <td>委托时间</td>
+                                <td class="appraisaling">鉴定中</td>
+                                <td>委托人</td>
+                                <td>
+                                    <a href="replacement.html" target="ifm" class="btn-icon btn-icon-blue btn-icon-addBusong-blue ">添加补送</a>
+                                    <button class="btn-icon btn-icon-yellow btn-icon-busong-yellow replacementTableShow">补送记录</button>
+                                    <div class="replacementTable">
+                                        <div class="triangle"></div>
+                                        <ul class="clearfix">
+                                            <li>01</li>
+                                            <li>补送类型: <span>人员检材</span></li>
+                                            <li>补送人一: <span>曲丽丽</span></li>
+                                            <li>补送时间: <span>2018-12-12</span></li>
+                                            <li>受理状态: <span>未受理</span></li>
+                                            <li>
+                                                <a href="replacement.html" class="btn btn-blue">查看详情</a>
+                                            </li>
+                                        </ul>
+                                        <ul class="clearfix">
+                                            <li>01</li>
+                                            <li>补送类型: <span>人员检材</span></li>
+                                            <li>补送人一: <span>曲丽丽</span></li>
+                                            <li>补送时间: <span>2018-12-12</span></li>
+                                            <li>受理状态: <span>未受理</span></li>
+                                            <li>
+                                                <a href="replacement.html" class="btn btn-blue">查看详情</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-font btn-font-green">合同表</button>
+                                    <button class="btn-font btn-font-green">聘请书</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>序号</td>
+                                <td>案件名称</td>
+                                <td>案件编号</td>
+                                <td>案件类别</td>
+                                <td>案件性质</td>
+                                <td>案发时间</td>
+                                <td>委托时间</td>
+                                <td class="appraisaled">鉴定完毕</td>
+                                <td>委托人</td>
+                                <td>
+                                    <a href="replacement.html" target="ifm" class="btn-icon btn-icon-blue btn-icon-addBusong-blue ">添加补送</a>
+                                    <button class="btn-icon btn-icon-yellow btn-icon-busong-yellow replacementTableShow">补送记录</button>
+                                    <div class="replacementTable">
+                                        <div class="triangle"></div>
+                                        <ul class="clearfix">
+                                            <li>01</li>
+                                            <li>补送类型: <span>人员检材</span></li>
+                                            <li>补送人一: <span>曲丽丽</span></li>
+                                            <li>补送时间: <span>2018-12-12</span></li>
+                                            <li>受理状态: <span>未受理</span></li>
+                                            <li>
+                                                <a href="replacement.html" class="btn btn-blue">查看详情</a>
+                                            </li>
+                                        </ul>
+                                        <ul class="clearfix">
+                                            <li>01</li>
+                                            <li>补送类型: <span>人员检材</span></li>
+                                            <li>补送人一: <span>曲丽丽</span></li>
+                                            <li>补送时间: <span>2018-12-12</span></li>
+                                            <li>受理状态: <span>未受理</span></li>
+                                            <li>
+                                                <a href="replacement.html" class="btn btn-blue">查看详情</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>
+                                    <button class="btn-font btn-font-green">合同表</button>
+                                    <button class="btn-font btn-font-green">聘请书</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row Modular notAccepted">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading blue">
+                    <div>未受理案件</div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-bordered bigTable">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>案件名称</th>
+                                <th>案件性质</th>
+                                <th>案发时间</th>
+                                <th>案发类型</th>
+                                <th>委托时间</th>
+                                <th>委托人</th>
+                                <th>送检状态</th>
+                                <th>操作</th>
+                                <th>下载</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>序号</td>
+                                <td>案件名称</td>
+                                <td>案件性质</td>
+                                <td>案发时间</td>
+                                <td>案发类型</td>
+                                <td>委托时间</td>
+                                <td>委托人</td>
+                                <td>送检状态</td>
+                                <td>
+                                    <a href="../delegationRegistration/dnaAppraisal.html" target="ifm" class="btn-icon btn-icon-blue btn-icon-bianji-blue ">编辑</a>
+                                    <button class="btn-icon btn-icon-red btn-icon-shanchu-red ">删除</button>
+                                </td>
+                                <td>
+                                    <button class="btn-font btn-font-green">合同表</button>
+                                    <button class="btn-font btn-font-green">聘请书</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>序号</td>
+                                <td>案件名称</td>
+                                <td>案件性质</td>
+                                <td>案发时间</td>
+                                <td>案发类型</td>
+                                <td>委托时间</td>
+                                <td>委托人</td>
+                                <td>送检状态</td>
+                                <td>
+                                    <a href="../delegationRegistration/dnaAppraisal.html" target="ifm" class="btn-icon btn-icon-blue btn-icon-bianji-blue ">编辑</a>
+                                    <button class="btn-icon btn-icon-red btn-icon-shanchu-red ">删除</button>
+                                </td>
+                                <td>
+                                    <button class="btn-font btn-font-green">合同表</button>
+                                    <button class="btn-font btn-font-green">聘请书</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            $(".replacementTableShow").click(function() {
+                $(this).siblings(".replacementTable").slideToggle("slow")
+            })
+            $("select[name='acceptingState']").change(function() {
+                if ($(this).val() == "已受理") {
+                    $(".notAccepted").addClass("hidden")
+                    $(".Accepted").removeClass("hidden")
+                } else {
+                    $(".notAccepted").removeClass("hidden")
+                    $(".Accepted").addClass("hidden")
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

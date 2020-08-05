@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/scroll.css">
+    <link rel="stylesheet" href="../../css/button.css">
+    <link rel="stylesheet" href="../../css/form.css">
+    <link rel="stylesheet" href="../../css/pop.css">
+    <style>
+        .breadcrumb {
+            padding: 8px 30px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: #fff;
+            border-radius: 0px;
+            border-bottom: 2px solid #f8f8f8;
+            position: absolute;
+            top: 0px;
+            width: 100%;
+        }
+        
+        .breadcrumb>li>a {
+            color: #b2b2b2
+        }
+        
+        .breadcrumb>li.active {
+            color: #007ef9
+        }
+        
+        body>.row {
+            width: 100%;
+            height: 100%;
+            padding: 55px 60px 87px 60px;
+            padding-top: 55px;
+        }
+        
+        body>.row>.col-md-12 {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            border: 1px solid #f2f2f2;
+            box-shadow: 0px 0px 10px 5px #f3f3f3;
+        }
+        
+        body>.row>.col-md-12>.row {
+            position: relative;
+            height: 100%;
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(1) {
+            height: 65px;
+            background: #f8f8f8;
+            line-height: 65px;
+            font-size: 22px;
+            font-weight: 600;
+            text-align: center;
+            color: #296fff;
+            position: absolute;
+            top: 0px;
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(2) {
+            height: 100%;
+            padding-top: 65px;
+            background: fff;
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(2)>ul {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(2)>ul>li {
+            width: 122px;
+            height: 44px;
+            color: #fff;
+            line-height: 44px;
+            border-radius: 50px;
+            margin: 0 auto;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(2)>ul>li>a {
+            color: #fff;
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(2)>ul>li+li {
+            margin-top: 32px;
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(2)>ul>li:nth-child(1) {
+            background: #007ef9
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(2)>ul>li:nth-child(2) {
+            background: #ffb802
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(2)>ul>li:nth-child(3) {
+            background: #ff5951
+        }
+        
+        body>.row>.col-md-12>.row>.col-md-12:nth-child(2)>ul>li:nth-child(4) {
+            background: #00b39b
+        }
+        
+        .form-control {
+            background: #fafafa;
+            border-color: #ececec
+        }
+    </style>
+</head>
+<div class="modal fade popBox smallBox" id="siteSurveyBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">输入现堪编号</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <a href="dnaAppraisal.html" class="btn btn-lang pull-left btn-blue" target="ifm">确认</a>
+                <button type="button" class="btn btn-lang pull-right btn-blue-border" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body>
+    <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li class="active">案件委托登记</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">选择鉴定类别</div>
+                <div class="col-md-12">
+                    <ul>
+                        <li data-toggle="modal" data-target="#siteSurveyBox">DNA鉴定</li>
+                        <li>
+                            <a href="poisonAppraisa.html" target="ifm">毒化鉴定</a>
+                        </li>
+                        <li>
+                            <a href="pathologyAppraisa.html" target="ifm">病理鉴定</a>
+                        </li>
+                        <li>
+                            <a href="clinicalAppraisa.html" target="ifm">临床鉴定</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer></footer>
+    <script src="../../lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>

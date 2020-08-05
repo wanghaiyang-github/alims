@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../lib/jquery.searchableSelect/jquery.searchableSelect.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/scroll.css">
+    <link rel="stylesheet" href="../../css/button.css">
+    <link rel="stylesheet" href="../../css/form.css">
+    <link rel="stylesheet" href="../../css/table.css">
+    <link rel="stylesheet" href="../../css/pop.css">
+</head>
+<!-- 补送人添加 -->
+<div class="modal fade popBox xsBox" id="addClientBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">补送人信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>补送人姓名</label>
+                    <input type="text" class="form-control" placeholder="请输入补送人姓名" name="clientName">
+                </div>
+                <div class="form-group">
+                    <label>职务</label>
+                    <input type="text" class="form-control" placeholder="请输入职务" name="clientDuties">
+                </div>
+                <div class="form-group">
+                    <label>联系方式</label>
+                    <input type="text" class="form-control" placeholder="请输入职务" name="clientPhone">
+                </div>
+                <div class="form-group">
+                    <label>证件类型</label>
+                    <div class="select">
+                        <select class="form-control" required name="clientIdType">
+                            <option value="" disabled selected hidden>请选择证件类型</option>
+                            <option value="警官证">警官证</option>
+                            <option value="身份证">身份证</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>证件号</label>
+                    <input type="text" class="form-control" placeholder="请输入证件号" name="clientId">
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <input type="hidden" name="index">
+                <button class="btn btn-lang btn-blue pull-left addClient">确认</button>
+                <button type="button" class="btn btn-lang pull-right btn-blue-border" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 其他鉴定要求 -->
+<div class="modal fade popBox smallBox" id="appraisalRequirementsBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">其他鉴定要求</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <button class="btn btn-lang pull-left btn-blue addAppraisalRequirements" data-toggle="modal" data-target="#appraisalRequirementsTips">确认</button>
+                <button type="button" class="btn btn-lang pull-right btn-blue-border" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 其他鉴定要求保存常用项 -->
+<div class="modal fade popBox tips" id="appraisalRequirementsTips" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                是否保存为常用项
+            </div>
+            <div class="modal-footer clearfix">
+                <button class="btn btn-lang pull-left btn-blue" data-dismiss="modal">是</button>
+                <button type="button" class="btn btn-lang pull-right btn-blue-border" data-dismiss="modal">否</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body>
+    <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">案件委托登记</a></li>
+        <li class="active">DNA鉴定补送</li>
+    </ol>
+    <div class="row fixedBox hidden">
+        <ul>
+            <li class="success">补送信息</li>
+            <li class="error">案件信息</li>
+            <li class="now">鉴定要求</li>
+            <li>被鉴定人信息</li>
+            <li>物证信息</li>
+        </ul>
+    </div>
+    <div class="row Modular">
+        <div class="col-md-6 starBox">
+            <p class="starP">
+                <i class="fa fa-star star" aria-hidden="true"></i>鉴定类别:<span>DNA鉴定</span>
+            </p>
+        </div>
+        <div class="col-md-6 starBox">
+            <p class="starP">
+                <i class="fa fa-star star" aria-hidden="true"></i>现堪编号:<span>XK-23456</span>
+            </p>
+        </div>
+    </div>
+    <div class="row Modular">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading blue">
+                    <div>补送信息</div>
+                </div>
+                <div class="panel-body">
+                    <div class="row inputBox">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>委托单位 :</label>
+                                <label>北市西城分局厂桥派出所</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row inputBox">
+                        <div class="col-md-5">
+                            <div class="col-md-11">
+                                <div class="single-member effect-1">
+                                    <select class="form-control clientSelect" required>
+                                        <option value="" disabled selected hidden>请选补送人1</option>
+                                        <option>张翼德</option>
+                                        <option>赵云</option>
+                                        <option>张飞</option>
+                                        <option>刘备</option>
+                                        <option value="other">其他</option>
+                                    </select>
+                                    <div class="member-info">
+                                        <div class="col-md-6">
+                                            <p>职务: <span class="clientDuties">XXXXX</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>电话: <span class="clientPhone">13522222222</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>证件: <span class="clientIdType">警官证</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>证件号: <span class="clientId">12346789</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="single-member effect-1">
+                                    <select class="form-control clientSelect" required>
+                                        <option value="" disabled selected hidden>请选补送人2</option>
+                                        <option>张翼德</option>
+                                        <option>赵云</option>
+                                        <option>张飞</option>
+                                        <option>刘备</option>
+                                        <option value="other">其他</option>
+                                    </select>
+                                    <div class="member-info">
+                                        <div class="col-md-6">
+                                            <p>职务: <span class="clientDuties">XXXXX</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>电话: <span class="clientPhone">13522222222</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>证件: <span class="clientIdType">警官证</span></p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>证件号: <span class="clientId">12346789</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="col-md-12">
+                                <div class="single-member effect-1">
+                                    <div class="member-image">
+                                        其他信息
+                                    </div>
+                                    <div class="member-info">
+                                        <div class="form-group">
+                                            <label>通讯地址</label>
+                                            <input type="text" class="form-control" placeholder="请输入通讯地址">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>邮政编号</label>
+                                            <input type="text" class="form-control" placeholder="请输入邮政编号">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>传真号码</label>
+                                            <input type="text" class="form-control" placeholder="请输入传真号码">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>原鉴定情况(鉴定单位及结论)</label>
+                                            <textarea class="form-control" rows="3" placeholder="请输入鉴定情况"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>重新鉴定原因</label>
+                                            <textarea class="form-control" rows="3" placeholder="请输入鉴定原因"></textarea>
+                                        </div>
+                                        <!-- <p>通讯地址: <span>XXXXX</span></p>
+                                    <p>邮政编号: <span>13522222222</span></p>
+                                    <p>传真号码: <span>警官证</span></p>
+                                    <p>原鉴定情况(鉴定单位及结论): <span>12346789</span></p>
+                                    <p>其他说明: <span>12346789</span></p> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row inputBox">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>通讯地址</label>
+                                <i class="required">*</i>
+                                <input type="text" class="form-control" placeholder="请输入通讯地址">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>邮政编号</label>
+                                <input type="text" class="form-control" placeholder="请输入邮政编号">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>传真号码</label>
+                                <input type="text" class="form-control" placeholder="请输入传真号码">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row inputBox">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>原鉴定情况(鉴定单位及结论)</label>
+                                <i class="required">*</i>
+                                <textarea class="form-control" rows="3" placeholder="请输入鉴定情况"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>重新鉴定原因</label>
+                                <textarea class="form-control" rows="3" placeholder="请输入鉴定原因"></textarea>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row Modular">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading yellow">
+                    <div>案件信息</div>
+                    <label class="custom-control checkbox-inline">
+                        <input class="custom-control-input" type="checkbox" disabled>
+                        <span class="custom-control-label" style="color: #ff5951">是否加急</span>
+                    </label>
+                </div>
+                <div class="panel-body">
+                    <div class="row inputBox">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>案件名称</label>
+                                <i class="required">*</i>
+                                <input type="text" class="form-control" placeholder="请输入案件名称" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>案发地点</label>
+                                <input type="text" class="form-control" placeholder="请输入案发地点" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>案发时间</label>
+                                <input type="text" class="form-control" placeholder="请输入案发时间" readonly disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>案件类型</label>
+                                <div class="select">
+                                    <select class="form-control" required disabled>
+                                        <option>刑事案件</option>
+                                        <option>民事案件</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>案发性质</label>
+                                <div class="select">
+                                    <select class="form-control" required disabled>
+                                        <option value="" disabled selected hidden>请选择案发性质</option>
+                                        <option>抢劫</option>
+                                        <option>强奸</option>
+                                        <option>盗窃</option>
+                                        <option>杀人</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>案件级别</label>
+                                <div class="select">
+                                    <select class="form-control" required disabled>
+                                        <option value="" disabled selected hidden>请选择案件级别</option>
+                                        <option>一般</option>
+                                        <option>特大</option>
+                                        <option>重大</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row inputBox">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>简要案情</label>
+                                <i class="required">*</i>
+                                <textarea class="form-control" rows="3" placeholder="请输入简要案情" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>其他说明</label>
+                                <textarea class="form-control" rows="3" placeholder="请输入其他说明" disabled></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row Modular">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading red">
+                    <div>鉴定要求</div>
+                    <button class="btn btn-blue checkboxAll">全选</button>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <ul class="btn-checkbox clearfix">
+                                    <li class="pull-left active">DNA检验及同一认定</li>
+                                    <li class="pull-left">DNA检验及亲缘关系鉴定</li>
+                                    <li class="pull-left">DNA检验，同一认定及亲缘关系鉴定</li>
+                                    <li class="pull-left">DNA检验入库比对</li>
+                                    <li class="pull-left">DNA检验鉴定与鉴定文书比对</li>
+                                    <li class="pull-left other" data-toggle="modal" data-target="#appraisalRequirementsBox">其他</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row Modular">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading green">
+                    <div>被鉴定人信息</div>
+                    <button class="btn btn-blue">添加</button>
+                </div>
+                <div class="panel-body nopadding">
+                    <table class="table table-hover table-bordered bigTable">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>人员类型</th>
+                                <th>人员名称</th>
+                                <th>性别</th>
+                                <th>年龄</th>
+                                <th>住址</th>
+                                <th>身份证号</th>
+                                <th>亲缘关系</th>
+                                <th>添加人员检材</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>序号</td>
+                                <td>人员类型</td>
+                                <td>人员名称</td>
+                                <td>性别</td>
+                                <td>年龄</td>
+                                <td>住址</td>
+                                <td>身份证号</td>
+                                <td>亲缘关系</td>
+                                <td>
+                                    <button class="btn btn-yellow btn-icon-bg"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                </td>
+                                <td>
+                                    <!-- <button class="btn-icon btn-icon-blue btn-icon-bianji-blue ">编辑</button> -->
+                                    <!-- <button class="btn-icon btn-icon-red btn-icon-shanchu-red ">删除</button> -->
+                                    <button class="btn-icon btn-icon-yellow  btn-icon-chakan-yellow">查看检材</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="10" class="active">
+                                    <table class="table table-hover table-bordered smallTable">
+                                        <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>样本编号</th>
+                                                <th>样本类型</th>
+                                                <th>样本名称</th>
+                                                <th>样本描述</th>
+                                                <th>包装方法</th>
+                                                <th>样本单位</th>
+                                                <th>提取时间</th>
+                                                <th>提取方法</th>
+                                                <th>送检目的</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>序号</td>
+                                                <td>样本编号</td>
+                                                <td>检材类型</td>
+                                                <td>检材名称</td>
+                                                <td>检材描述</td>
+                                                <td>包装方法</td>
+                                                <td>检材单位</td>
+                                                <td>提取时间</td>
+                                                <td>提取方法</td>
+                                                <td>送检目的</td>
+                                                <td>
+                                                    <!-- <button class="btn-icon btn-icon-gray btn-icon-bianji-gray ">编辑</button> -->
+                                                    <!-- <button class="btn-icon btn-icon-gray btn-icon-shanchu-gray ">删除</button> -->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>序号</td>
+                                <td>人员类型</td>
+                                <td>人员名称</td>
+                                <td>性别</td>
+                                <td>年龄</td>
+                                <td>住址</td>
+                                <td>身份证号</td>
+                                <td>亲缘关系</td>
+                                <td>
+                                    <button class="btn btn-yellow btn-icon-bg"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                </td>
+                                <td>
+                                    <!-- <button class="btn-icon btn-icon-blue btn-icon-bianji-blue ">编辑</button> -->
+                                    <!-- <button class="btn-icon btn-icon-red btn-icon-shanchu-red ">删除</button> -->
+                                    <button class="btn-icon btn-icon-yellow  btn-icon-chakan-yellow">查看检材</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row Modular">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading blue">
+                    <div>物证信息</div>
+                    <button class="btn btn-blue">添加</button>
+                </div>
+                <div class="panel-body nopadding">
+                    <table class="table table-hover table-bordered bigTable">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>物证类型</th>
+                                <th>物证名称</th>
+                                <th>物证数量</th>
+                                <th>物证单位</th>
+                                <th>包装方法</th>
+                                <th>物证描述</th>
+                                <th>添加物证检材</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>序号</td>
+                                <td>人员类型</td>
+                                <td>人员名称</td>
+                                <td>性别</td>
+                                <td>年龄</td>
+                                <td>住址</td>
+                                <td>身份证号</td>
+                                <td>
+                                    <button class="btn btn-yellow btn-icon-bg"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                </td>
+                                <td>
+                                    <!-- <button class="btn-icon btn-icon-blue btn-icon-bianji-blue ">编辑</button>
+                                    <button class="btn-icon btn-icon-red btn-icon-shanchu-red ">删除</button> -->
+                                    <button class="btn-icon btn-icon-yellow  btn-icon-chakan-yellow">查看检材</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9" class="active">
+                                    <table class="table table-hover table-bordered smallTable">
+                                        <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>检材类型</th>
+                                                <th>检材名称</th>
+                                                <th>检材描述</th>
+                                                <th>包装方法</th>
+                                                <th>检材单位</th>
+                                                <th>提取时间</th>
+                                                <th>提取方法</th>
+                                                <th>送检目的</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>序号</td>
+                                                <td>检材类型</td>
+                                                <td>检材名称</td>
+                                                <td>检材描述</td>
+                                                <td>包装方法</td>
+                                                <td>检材单位</td>
+                                                <td>提取时间</td>
+                                                <td>提取方法</td>
+                                                <td>送检目的</td>
+                                                <td>
+                                                    <!-- <button class="btn-icon btn-icon-gray btn-icon-bianji-gray ">编辑</button> -->
+                                                    <!-- <button class="btn-icon btn-icon-gray btn-icon-shanchu-gray ">删除</button> -->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>序号</td>
+                                <td>人员类型</td>
+                                <td>人员名称</td>
+                                <td>性别</td>
+                                <td>年龄</td>
+                                <td>住址</td>
+                                <td>身份证号</td>
+                                <td>
+                                    <button class="btn btn-yellow btn-icon-bg"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                </td>
+                                <td>
+                                    <!-- <button class="btn-icon btn-icon-blue btn-icon-bianji-blue ">编辑</button>
+                                    <button class="btn-icon btn-icon-red btn-icon-shanchu-red ">删除</button> -->
+                                    <button class="btn-icon btn-icon-yellow  btn-icon-chakan-yellow">查看检材</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row btn-box ">
+        <div class="col-md-12">
+            <button class="btn btn-blue btn-lang">提交</button>
+            <button class="btn btn-blue-border btn-lang">取消</button>
+        </div>
+    </div>
+    <script src="../../lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="../../lib/jquery.searchableSelect/jquery.searchableSelect.js"></script>
+    <script>
+        $(function() {
+            $(".clientSelect").searchableSelect();
+            $(".clientSelect").change(function() {
+                if ($(this).val() == "other") {
+                    $("#addClientBox").modal('show')
+                    $("#addClientBox").find("input[name='index']").val($(this).parents(".col-md-11").index())
+                }
+            })
+            $(".addClient").click(function() {
+                var clientName = $("#addClientBox").find("input[name='clientName']").val()
+                var clientDuties = $("#addClientBox").find("input[name='clientDuties']").val()
+                var clientIdType = $("#addClientBox").find("select[name='clientIdType']").val()
+                var clientId = $("#addClientBox").find("input[name='clientId']").val()
+                var clientPhone = $("#addClientBox").find("input[name='clientPhone']").val()
+                var index = $("#addClientBox").find("input[name='index']").val()
+
+                $(".effect-1").parent(".col-md-11").children().eq(index).find(".clientSelect").find(
+                    "option[value='other']").before("<option selected>" + clientName + "</option>")
+                $(".effect-1").parent(".col-md-11").children().eq(index).find(".clientSelect").next().remove()
+                $(".effect-1").parent(".col-md-11").children().eq(index).find(".clientPhone").html(
+                    clientPhone)
+                $(".effect-1").parent(".col-md-11").children().eq(index).find(".clientDuties").html(
+                    clientDuties)
+                $(".effect-1").parent(".col-md-11").children().eq(index).find(".clientIdType").html(
+                    clientIdType)
+                $(".effect-1").parent(".col-md-11").children().eq(index).find(".clientId").html(
+                    clientId)
+                $(".effect-1").parent(".col-md-11").children().eq(index).find(".clientSelect").searchableSelect();
+
+                $("#addClientBox").modal('hide')
+            })
+            $('#addClientBox').on('hidden.bs.modal', function(e) {
+                    $("#addClientBox").find("input").val("")
+                    $("#addClientBox").find("select").val("")
+                })
+                // 鉴定要求边距
+            $(".btn-checkbox").children().each(function(i) {
+                    if (i > 0 && $(this).position().left == 0) {
+                        $(this).css("margin-left", '0')
+                    }
+                })
+                // 鉴定要求点击效果
+            $(".btn-checkbox").on("click", 'li', function() {
+                    if ($(this).hasClass("active")) {
+                        $(this).removeClass("active")
+                    } else {
+                        $(this).addClass("active")
+                    }
+                })
+                // 鉴定要求全选
+            $(".checkboxAll").click(function() {
+                    if ($(".btn-checkbox").children(".active").length == $(".btn-checkbox").children().length) {
+                        $(".btn-checkbox").children(".active").removeClass("active")
+                    } else {
+                        $(".btn-checkbox").children().addClass("active")
+                    }
+                })
+                //鉴定要求其他保存
+            $(".addAppraisalRequirements").click(function() {
+                    $("#appraisalRequirementsBox").find("input").val()
+                    $(".btn-checkbox").find(".other").before('<li class="pull-left active">' + $(
+                        "#appraisalRequirementsBox").find("input").val() + '</li>')
+                    $(".btn-checkbox").children().each(function(i) {
+                        if (i > 0 && $(this).position().left == 0) {
+                            $(this).css("margin-left", '0')
+                        }
+                    })
+                    $('#appraisalRequirementsBox').modal('hide')
+                })
+                //鉴定要求其他关闭清空
+            $('#appraisalRequirementsBox').on('hidden.bs.modal', function(e) {
+                $(".btn-checkbox").find(".other").removeClass("active")
+                $("#appraisalRequirementsBox").find("input").val("")
+            })
+            window.onscroll = function() {
+                if ($(document).scrollTop() >= 112) {
+                    $(".fixedBox").removeClass("hidden")
+                    var currentScroll = $(this).scrollTop()
+                    var currentSection
+                    $(".Modular").each(function() {
+                        var divPosition = $(this).offset().top - 62;
+                        if (currentScroll > divPosition) {
+                            currentSection = $(this).find(".panel-heading").children().html()
+                        }
+                    })
+                    $(".fixedBox").find("li").each(function() {
+                        if ($(this).html() == currentSection) {
+                            $(this).addClass("now").siblings().removeClass("now")
+                        }
+                    })
+                } else {
+                    $(".fixedBox").addClass("hidden")
+                }
+            }
+            $(".fixedBox").find("li").click(function() {
+                var that = $(this)
+                $(".Modular").each(function() {
+                    if (that.html() == $(this).find(".panel-heading").children().html()) {
+                        $("html,body").animate({
+                            scrollTop: $(this).offset().top - 60
+                        }, 500);
+                    }
+                })
+                that.addClass("liActive").siblings().removeClass("liActive")
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.alims.dao.QueueSampleMapper" >
+  <resultMap id="BaseResultMap" type="com.bazl.alims.model.po.QueueSample" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="FOREIGN_ID" property="foreignId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATETIME" property="updateDatetime" jdbcType="TIMESTAMP" />
+    <result column="QUEUE_TYPE" property="queueType" jdbcType="VARCHAR" />
+    <result column="FILENAME" property="filename" jdbcType="VARCHAR" />
+    <result column="SERVER_NO" property="serverNo" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <insert id="insertQueueSample" parameterType="com.bazl.alims.model.po.QueueSample" >
+    insert into QUEUE_SAMPLE (ID, FOREIGN_ID, STATUS,
+    CREATE_DATETIME, UPDATE_DATETIME, QUEUE_TYPE,
+    FILENAME, SERVER_NO)
+    values (#{id,jdbcType=VARCHAR}, #{foreignId,jdbcType=VARCHAR}, #{status,jdbcType=DECIMAL},
+    #{createDatetime,jdbcType=TIMESTAMP}, #{updateDatetime,jdbcType=TIMESTAMP}, #{queueType,jdbcType=VARCHAR},
+    #{filename,jdbcType=VARCHAR}, #{serverNo,jdbcType=VARCHAR})
+  </insert>
+
+
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.String" >-->
+    <!--delete from QUEUE_SAMPLE-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</delete>-->
+
+  <!--<update id="updateByPrimaryKey" parameterType="com.bazl.alims.model.po.QueueSample" >-->
+    <!--update QUEUE_SAMPLE-->
+    <!--set FOREIGN_ID = #{foreignId,jdbcType=VARCHAR},-->
+    <!--STATUS = #{status,jdbcType=DECIMAL},-->
+    <!--CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},-->
+    <!--UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},-->
+    <!--QUEUE_TYPE = #{queueType,jdbcType=VARCHAR},-->
+    <!--FILENAME = #{filename,jdbcType=VARCHAR},-->
+    <!--SERVER_NO = #{serverNo,jdbcType=VARCHAR}-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >-->
+    <!--select ID, FOREIGN_ID, STATUS, CREATE_DATETIME, UPDATE_DATETIME, QUEUE_TYPE, FILENAME,-->
+    <!--SERVER_NO-->
+    <!--from QUEUE_SAMPLE-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</select>-->
+  <!--<select id="selectAll" resultMap="BaseResultMap" >-->
+    <!--select ID, FOREIGN_ID, STATUS, CREATE_DATETIME, UPDATE_DATETIME, QUEUE_TYPE, FILENAME,-->
+    <!--SERVER_NO-->
+    <!--from QUEUE_SAMPLE-->
+  <!--</select>-->
+
+
+</mapper>

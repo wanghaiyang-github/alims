@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.alims.dao.LoaRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.bazl.alims.model.LoaRole" >
+    <id column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <result column="ROLE_LEVEL" property="roleLevel" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="queryLoaRole" resultMap="BaseResultMap" >
+    select ROLE_ID, ROLE_NAME, ROLE_LEVEL, CREATE_DATETIME, CREATE_PERSON
+    from LOA_ROLE where  ROLE_LEVEL in ('1','2')
+  </select>
+  <select id="listRolesByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select r.ROLE_ID, r.ROLE_NAME, r.ROLE_LEVEL, r.CREATE_DATETIME, r.CREATE_PERSON
+    from LOA_ROLE r left join LOA_ROLE_RELATION rr on r.ROLE_ID=rr.ROLE_ID
+    where rr.USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.alims.dao.DictInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.bazl.alims.model.DictInfo" >
+    <id column="DICT_INFO_ID" property="dictInfoId" jdbcType="VARCHAR" />
+    <result column="DICT_TYPE_CODE" property="dictTypeCode" jdbcType="VARCHAR" />
+    <result column="DICT_TYPE_NAME" property="dictTypeName" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+  </resultMap>
+
+</mapper>

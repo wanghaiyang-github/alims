@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.alims.dao.LimsSampleInfoDnaMapper" >
+  <resultMap id="BaseResultMap" type="com.bazl.alims.model.po.LimsSampleInfoDna" >
+    <id column="SAMPLE_ID" property="sampleId" jdbcType="VARCHAR" />
+    <result column="CONSIGNMENT_ID" property="consignmentId" jdbcType="VARCHAR" />
+    <result column="CASE_ID" property="caseId" jdbcType="VARCHAR" />
+    <result column="EVIDENCE_ID" property="evidenceId" jdbcType="VARCHAR" />
+    <result column="SAMPLE_NO" property="sampleNo" jdbcType="VARCHAR" />
+    <result column="SAMPLE_NAME" property="sampleName" jdbcType="VARCHAR" />
+    <result column="SAMPLE_TYPE" property="sampleType" jdbcType="VARCHAR" />
+    <result column="SAMPLE_DESC" property="sampleDesc" jdbcType="VARCHAR" />
+    <result column="SAMPLE_PACKING" property="samplePacking" jdbcType="VARCHAR" />
+    <result column="SAMPLE_CARRIER" property="sampleCarrier" jdbcType="VARCHAR" />
+    <result column="EXTRACT_DATETIME" property="extractDatetime" jdbcType="TIMESTAMP" />
+    <result column="EXTRACT_PERSON" property="extractPerson" jdbcType="VARCHAR" />
+    <result column="EXTRACT_METHOD" property="extractMethod" jdbcType="VARCHAR" />
+    <result column="EXTRACT_PART" property="extractPart" jdbcType="VARCHAR" />
+    <result column="SAMPLE_FLAG" property="sampleFlag" jdbcType="VARCHAR" />
+    <result column="LINK_ID" property="linkId" jdbcType="VARCHAR" />
+    <result column="SAMPLE_PURPOSE" property="samplePurpose" jdbcType="VARCHAR" />
+    <result column="SAMPLE_STATUS" property="sampleStatus" jdbcType="VARCHAR" />
+    <result column="INSTORED_FLAG" property="instoredFlag" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATETIME" property="updateDatetime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_PERSON" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="VARCHAR" />
+    <result column="DELETE_DATETIME" property="deleteDatetime" jdbcType="TIMESTAMP" />
+    <result column="DELETE_PERSON" property="deletePerson" jdbcType="VARCHAR" />
+    <result column="DELETE_REASON" property="deleteReason" jdbcType="VARCHAR" />
+    <result column="SAMPLE_REMARK" property="sampleRemark" jdbcType="VARCHAR" />
+
+    <result column="SAMPLE_DNA_PICTURE" property="sampleDnaPicture" jdbcType="VARCHAR" />
+    <result column="SAMPLE_DNA_PICTURE_PATH" property="sampleDnaPicturePath" jdbcType="VARCHAR" />
+
+    <result column="SAMPLE_TYPE_NAME" property="sampleTypeName" jdbcType="VARCHAR" />
+    <result column="EXTRACT_METHOD_NAME" property="extractMethodName" jdbcType="VARCHAR" />
+    <result column="SAMPLE_PACKING_NAME" property="samplePackingName" jdbcType="VARCHAR" />
+
+    <result column="EVIDENCE_NO" property="evidenceNo" jdbcType="VARCHAR" />
+
+    <result column="SAMPLE_MATERIAL_PICTURE" property="sampleMaterialPicture" jdbcType="VARCHAR" />
+    <result column="SAMPLE_MATERIAL_PICTURE_PATH" property="sampleMaterialPicturePath" jdbcType="VARCHAR" />
+    <result column="CORE_TAKEN_STATS" property="coreTakenStats" jdbcType="VARCHAR" />
+    <result column="CORE_VICTIM_STATS" property="coreVictimStats" jdbcType="VARCHAR" />
+    <result column="EVIDENCE_SERIAL_NO" property="evidenceSerialNo" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    SAMPLE_ID, CONSIGNMENT_ID, CASE_ID, EVIDENCE_ID, SAMPLE_NO, SAMPLE_NAME, SAMPLE_TYPE, SAMPLE_DESC, SAMPLE_PACKING, SAMPLE_CARRIER,
+    EXTRACT_DATETIME, EXTRACT_PERSON, EXTRACT_METHOD, EXTRACT_PART, SAMPLE_FLAG, LINK_ID, SAMPLE_PURPOSE, SAMPLE_STATUS,
+    INSTORED_FLAG, CREATE_DATETIME, CREATE_PERSON, UPDATE_DATETIME, UPDATE_PERSON, DELETE_FLAG, DELETE_DATETIME, DELETE_PERSON, DELETE_REASON,
+    SAMPLE_REMARK, SAMPLE_DNA_PICTURE, SAMPLE_DNA_PICTURE_PATH, EVIDENCE_NO, SAMPLE_CARRIER, SAMPLE_MATERIAL_PICTURE, SAMPLE_MATERIAL_PICTURE_PATH,
+    CORE_TAKEN_STATS,CORE_VICTIM_STATS,EVIDENCE_SERIAL_NO
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from LIMS_SAMPLE_INFO_DNA
+    where SAMPLE_ID = #{sampleId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectSampleInfoDnaById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from LIMS_SAMPLE_INFO_DNA
+    where SAMPLE_ID = #{sampleId,jdbcType=VARCHAR}
+  </select>
+
+  <insert id="insertSampleInfoDna" parameterType="com.bazl.alims.model.po.LimsSampleInfoDna" >
+    insert into LIMS_SAMPLE_INFO_DNA (SAMPLE_ID, CONSIGNMENT_ID, CASE_ID,
+      EVIDENCE_ID, SAMPLE_NO, SAMPLE_NAME,
+      SAMPLE_TYPE, SAMPLE_DESC, SAMPLE_PACKING,
+      SAMPLE_CARRIER, EXTRACT_DATETIME, EXTRACT_PERSON,
+      EXTRACT_METHOD, EXTRACT_PART, SAMPLE_FLAG,
+      LINK_ID, SAMPLE_PURPOSE, SAMPLE_STATUS,
+      INSTORED_FLAG, CREATE_DATETIME, CREATE_PERSON,
+      UPDATE_DATETIME, UPDATE_PERSON, DELETE_FLAG,
+      DELETE_DATETIME, DELETE_PERSON, DELETE_REASON,
+      SAMPLE_REMARK, SAMPLE_DNA_PICTURE, SAMPLE_DNA_PICTURE_PATH, EVIDENCE_NO,
+      SAMPLE_MATERIAL_PICTURE, SAMPLE_MATERIAL_PICTURE_PATH,CORE_TAKEN_STATS,
+      CORE_VICTIM_STATS,EVIDENCE_SERIAL_NO)
+    values (#{sampleId,jdbcType=VARCHAR}, #{consignmentId,jdbcType=VARCHAR}, #{caseId,jdbcType=VARCHAR},
+      #{evidenceId,jdbcType=VARCHAR}, #{sampleNo,jdbcType=VARCHAR}, #{sampleName,jdbcType=VARCHAR},
+      #{sampleType,jdbcType=VARCHAR}, #{sampleDesc,jdbcType=VARCHAR}, #{samplePacking,jdbcType=VARCHAR},
+      #{sampleCarrier,jdbcType=VARCHAR}, #{extractDatetime,jdbcType=TIMESTAMP}, #{extractPerson,jdbcType=VARCHAR},
+      #{extractMethod,jdbcType=VARCHAR}, #{extractPart,jdbcType=VARCHAR}, #{sampleFlag,jdbcType=VARCHAR},
+      #{linkId,jdbcType=VARCHAR}, #{samplePurpose,jdbcType=VARCHAR}, #{sampleStatus,jdbcType=VARCHAR},
+      #{instoredFlag,jdbcType=VARCHAR}, #{createDatetime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR},
+      #{updateDatetime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=VARCHAR},
+      #{deleteDatetime,jdbcType=TIMESTAMP}, #{deletePerson,jdbcType=VARCHAR}, #{deleteReason,jdbcType=VARCHAR},
+      #{sampleRemark,jdbcType=VARCHAR}, #{sampleDnaPicture,jdbcType=VARCHAR}, #{sampleDnaPicturePath,jdbcType=VARCHAR},
+      #{evidenceNo,jdbcType=VARCHAR}, #{sampleMaterialPicture,jdbcType=VARCHAR}, #{sampleMaterialPicturePath,jdbcType=VARCHAR},
+      #{coreTakenStats,jdbcType=VARCHAR},#{coreVictimStats,jdbcType=VARCHAR},#{evidenceSerialNo,jdbcType=INTEGER})
+  </insert>
+
+  <update id="updateSampleInfoDna" parameterType="com.bazl.alims.model.po.LimsSampleInfoDna" >
+    update LIMS_SAMPLE_INFO_DNA
+    set CONSIGNMENT_ID = #{consignmentId,jdbcType=VARCHAR},
+      CASE_ID = #{caseId,jdbcType=VARCHAR},
+      EVIDENCE_ID = #{evidenceId,jdbcType=VARCHAR},
+      SAMPLE_NO = #{sampleNo,jdbcType=VARCHAR},
+      SAMPLE_NAME = #{sampleName,jdbcType=VARCHAR},
+      SAMPLE_TYPE = #{sampleType,jdbcType=VARCHAR},
+      SAMPLE_DESC = #{sampleDesc,jdbcType=VARCHAR},
+      SAMPLE_PACKING = #{samplePacking,jdbcType=VARCHAR},
+      SAMPLE_CARRIER = #{sampleCarrier,jdbcType=VARCHAR},
+      EXTRACT_DATETIME = #{extractDatetime,jdbcType=TIMESTAMP},
+      EXTRACT_PERSON = #{extractPerson,jdbcType=VARCHAR},
+      EXTRACT_METHOD = #{extractMethod,jdbcType=VARCHAR},
+      EXTRACT_PART = #{extractPart,jdbcType=VARCHAR},
+      SAMPLE_FLAG = #{sampleFlag,jdbcType=VARCHAR},
+      LINK_ID = #{linkId,jdbcType=VARCHAR},
+      SAMPLE_PURPOSE = #{samplePurpose,jdbcType=VARCHAR},
+      SAMPLE_STATUS = #{sampleStatus,jdbcType=VARCHAR},
+      INSTORED_FLAG = #{instoredFlag,jdbcType=VARCHAR},
+      CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+      CREATE_PERSON = #{createPerson,jdbcType=VARCHAR},
+      UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},
+      UPDATE_PERSON = #{updatePerson,jdbcType=VARCHAR},
+      DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+      DELETE_DATETIME = #{deleteDatetime,jdbcType=TIMESTAMP},
+      DELETE_PERSON = #{deletePerson,jdbcType=VARCHAR},
+      DELETE_REASON = #{deleteReason,jdbcType=VARCHAR},
+      SAMPLE_REMARK = #{sampleRemark,jdbcType=VARCHAR},
+      SAMPLE_DNA_PICTURE = #{sampleDnaPicture,jdbcType=VARCHAR},
+      SAMPLE_DNA_PICTURE_PATH = #{sampleDnaPicturePath,jdbcType=VARCHAR},
+      EVIDENCE_NO = #{evidenceNo,jdbcType=VARCHAR},
+      SAMPLE_MATERIAL_PICTURE = #{sampleMaterialPicture,jdbcType=VARCHAR},
+      SAMPLE_MATERIAL_PICTURE_PATH = #{sampleMaterialPicturePath,jdbcType=VARCHAR},
+      CORE_TAKEN_STATS = #{coreTakenStats,jdbcType=VARCHAR},
+      CORE_VICTIM_STATS = #{coreVictimStats,jdbcType=VARCHAR},
+      EVIDENCE_SERIAL_NO = #{evidenceSerialNo,jdbcType=INTEGER}
+    where SAMPLE_ID = #{sampleId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByCaseIdAndWz" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select lsid.EXTRACT_METHOD, lsid.SAMPLE_PACKING, lsid.SAMPLE_TYPE, lsid.SAMPLE_ID, lsid.CONSIGNMENT_ID, lsid.CASE_ID, lsid.EVIDENCE_ID, lsid.SAMPLE_NO, lsid.SAMPLE_NAME, di_1.dict_name as SAMPLE_TYPE_NAME, lsid.SAMPLE_DESC, di_2.dict_name as SAMPLE_PACKING_NAME, lsid.SAMPLE_CARRIER,
+        lsid.EXTRACT_DATETIME, lsid.EXTRACT_PERSON, di_3.dict_name as EXTRACT_METHOD_NAME, lsid.EXTRACT_PART, lsid.SAMPLE_FLAG, lsid.LINK_ID, lsid.SAMPLE_PURPOSE, lsid.SAMPLE_STATUS,
+        lsid.INSTORED_FLAG, lsid.CREATE_DATETIME, lsid.CREATE_PERSON, lsid.UPDATE_DATETIME, lsid.UPDATE_PERSON, lsid.DELETE_FLAG, lsid.DELETE_DATETIME, lsid.DELETE_PERSON, lsid.DELETE_REASON,
+        lsid.SAMPLE_REMARK, lsid.SAMPLE_DNA_PICTURE, lsid.SAMPLE_DNA_PICTURE_PATH, lsid.EVIDENCE_NO,
+        lsid.SAMPLE_CARRIER, lsid.SAMPLE_MATERIAL_PICTURE, lsid.SAMPLE_MATERIAL_PICTURE_PATH,lsid.CORE_TAKEN_STATS,
+        lsid.CORE_VICTIM_STATS,lsid.EVIDENCE_SERIAL_NO
+      from LIMS_SAMPLE_INFO_DNA lsid
+      left join dict_item di_1 on lsid.sample_type = di_1.dict_code and di_1.DICT_TYPE_CODE='SAMPLE_TYPE'
+      left join dict_item di_2 on lsid.SAMPLE_PACKING = di_2.dict_code and di_2.DICT_TYPE_CODE = 'PACK_METHOD'
+      left join dict_item di_3 on lsid.EXTRACT_METHOD = di_3.dict_code and di_3.DICT_TYPE_CODE = 'EXTRACT_METHOD'
+        where case_id =  #{caseId,jdbcType=VARCHAR} and delete_flag = '0' and SAMPLE_FLAG = '0'
+     and CONSIGNMENT_ID =  #{consignmentId,jdbcType=VARCHAR}
+     order by lsid.CREATE_DATETIME, lsid.EVIDENCE_SERIAL_NO, lsid.EVIDENCE_NO
+  </select>
+  <!--查询非现场案件检材-->
+  <select id="selectByCaseIdAndWzNon" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select lsid.EXTRACT_METHOD, lsid.SAMPLE_PACKING, lsid.SAMPLE_TYPE, lsid.SAMPLE_ID, lsid.CONSIGNMENT_ID, lsid.CASE_ID, lsid.EVIDENCE_ID, lsid.SAMPLE_NO, lsid.SAMPLE_NAME, di_1.dict_name as SAMPLE_TYPE_NAME, lsid.SAMPLE_DESC, di_2.dict_name as SAMPLE_PACKING_NAME, lsid.SAMPLE_CARRIER,
+        lsid.EXTRACT_DATETIME, lsid.EXTRACT_PERSON, di_3.dict_name as EXTRACT_METHOD_NAME, lsid.EXTRACT_PART, lsid.SAMPLE_FLAG, lsid.LINK_ID, lsid.SAMPLE_PURPOSE, lsid.SAMPLE_STATUS,
+        lsid.INSTORED_FLAG, lsid.CREATE_DATETIME, lsid.CREATE_PERSON, lsid.UPDATE_DATETIME, lsid.UPDATE_PERSON, lsid.DELETE_FLAG, lsid.DELETE_DATETIME, lsid.DELETE_PERSON, lsid.DELETE_REASON,
+        lsid.SAMPLE_REMARK, lsid.SAMPLE_DNA_PICTURE, lsid.SAMPLE_DNA_PICTURE_PATH, lsid.EVIDENCE_NO,
+        lsid.SAMPLE_CARRIER, lsid.SAMPLE_MATERIAL_PICTURE, lsid.SAMPLE_MATERIAL_PICTURE_PATH,lsid.CORE_TAKEN_STATS,
+        lsid.CORE_VICTIM_STATS, lsid.EVIDENCE_SERIAL_NO
+      from LIMS_SAMPLE_INFO_DNA lsid
+      left join dict_item di_1 on lsid.sample_type = di_1.dict_code and di_1.DICT_TYPE_CODE='SAMPLE_TYPE'
+      left join dict_item di_2 on lsid.SAMPLE_PACKING = di_2.dict_code and di_2.DICT_TYPE_CODE = 'PACK_METHOD'
+      left join dict_item di_3 on lsid.EXTRACT_METHOD = di_3.dict_code and di_3.DICT_TYPE_CODE = 'EXTRACT_METHOD'
+        where case_id =  #{caseId,jdbcType=VARCHAR} and delete_flag = '0' and SAMPLE_FLAG = '0'
+     and CONSIGNMENT_ID =  #{consignmentId,jdbcType=VARCHAR} order by lsid.CREATE_DATETIME,lsid.SAMPLE_NAME ASC
+  </select>
+
+  <select id="selectByCaseIdAndRy" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select lsid.EXTRACT_METHOD, lsid.SAMPLE_PACKING, lsid.SAMPLE_TYPE, lsid.SAMPLE_ID, lsid.CONSIGNMENT_ID, lsid.CASE_ID, lsid.EVIDENCE_ID, lsid.SAMPLE_NO, lsid.SAMPLE_NAME, di_1.dict_name as SAMPLE_TYPE_NAME, lsid.SAMPLE_DESC,
+        di_2.dict_name as SAMPLE_PACKING_NAME, lsid.SAMPLE_CARRIER,
+        lsid.EXTRACT_DATETIME, lsid.EXTRACT_PERSON, di_3.dict_name as EXTRACT_METHOD_NAME, lsid.EXTRACT_PART, lsid.SAMPLE_FLAG, lsid.LINK_ID, lsid.SAMPLE_PURPOSE, lsid.SAMPLE_STATUS,
+        lsid.INSTORED_FLAG, lsid.CREATE_DATETIME, lsid.CREATE_PERSON, lsid.UPDATE_DATETIME, lsid.UPDATE_PERSON, lsid.DELETE_FLAG, lsid.DELETE_DATETIME, lsid.DELETE_PERSON, lsid.DELETE_REASON,
+        lsid.SAMPLE_REMARK, lsid.SAMPLE_DNA_PICTURE, lsid.SAMPLE_DNA_PICTURE_PATH,lsid.CORE_TAKEN_STATS,lsid.CORE_VICTIM_STATS,lsid.EVIDENCE_SERIAL_NO
+      from LIMS_SAMPLE_INFO_DNA lsid
+      left join dict_item di_1 on lsid.sample_type = di_1.dict_code and di_1.DICT_TYPE_CODE='SAMPLE_TYPE'
+      left join dict_item di_2 on lsid.SAMPLE_PACKING = di_2.dict_code and di_2.DICT_TYPE_CODE = 'PACK_METHOD'
+      left join dict_item di_3 on lsid.EXTRACT_METHOD = di_3.dict_code and di_3.DICT_TYPE_CODE = 'EXTRACT_METHOD'
+     where lsid.case_id =  #{caseId,jdbcType=VARCHAR} and lsid.delete_flag = '0' and lsid.SAMPLE_FLAG = '1'
+    and lsid.CONSIGNMENT_ID =  #{consignmentId,jdbcType=VARCHAR} order by lsid.CREATE_DATETIME,lsid.SAMPLE_NAME asc
+  </select>
+  
+  <update id="deleteByCaseIdAndConsignmentId" parameterType="com.bazl.alims.model.po.LimsSampleInfoDna">
+    update LIMS_SAMPLE_INFO_DNA set DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR}, DELETE_DATETIME = #{deleteDatetime,jdbcType=TIMESTAMP},
+      DELETE_PERSON = #{deletePerson,jdbcType=VARCHAR} where CONSIGNMENT_ID =  #{consignmentId,jdbcType=VARCHAR} and
+      CASE_ID = #{caseId,jdbcType=VARCHAR}
+  </update>
+
+  <delete id="deleteBySampleId" parameterType="java.lang.String">
+    DELETE from LIMS_SAMPLE_INFO_DNA where SAMPLE_ID = #{sampleId,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="selectByCaseId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from LIMS_SAMPLE_INFO_DNA
+    where CASE_ID = #{caseId,jdbcType=VARCHAR} and delete_flag = '0' and SAMPLE_FLAG = '0'
+  </select>
+
+  <select id="selectYbByCaseId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from LIMS_SAMPLE_INFO_DNA
+    where CASE_ID = #{caseId,jdbcType=VARCHAR} and delete_flag = '0' and SAMPLE_FLAG = '1'
+  </select>
+
+  <select id="selectBySampleName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from LIMS_SAMPLE_INFO_DNA
+    where CASE_ID = #{caseId,jdbcType=VARCHAR} and  SAMPLE_NAME = #{sampleName,jdbcType=VARCHAR} and delete_flag = '0' and SAMPLE_FLAG = '0'
+  </select>
+
+
+  <!--根据案件id,检材名称，更新W号-->
+  <update id="updateSampleInfoDnaWno" parameterType="com.bazl.alims.model.po.LimsSampleInfoDna" >
+    update LIMS_SAMPLE_INFO_DNA
+    set EVIDENCE_NO = #{evidenceNo,jdbcType=VARCHAR}
+    where CASE_ID = #{caseId,jdbcType=VARCHAR} and SAMPLE_NAME = #{sampleName,jdbcType=VARCHAR} and SAMPLE_FLAG = '0'
+  </update>
+
+</mapper>

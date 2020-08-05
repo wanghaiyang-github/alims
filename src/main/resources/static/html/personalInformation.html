@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/scroll.css">
+    <link rel="stylesheet" href="../css/button.css">
+    <link rel="stylesheet" href="../css/form.css">
+    <link rel="stylesheet" href="../css/table.css">
+    <link rel="stylesheet" href="../css/pop.css">
+    <style>
+        .personBox {
+            width: 755px;
+            height: 410px;
+            border: 1px solid #f2f2f2;
+            box-shadow: 0px 0px 10px 5px #f3f3f3;
+            margin: 0 auto;
+        }
+        
+        .personBox .col-md-12:nth-child(1) {
+            height: 118px;
+            border-bottom: 2px dashed #e8e8e8;
+            text-align: center;
+            padding-top: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .personBox .col-md-12:nth-child(1) img {
+            display: block;
+            margin: 0 auto;
+            height: 70px;
+        }
+        
+        .personBox .col-md-12:nth-child(1) i {
+            height: 20px;
+            width: 20px;
+            display: inline-block;
+            background: #ff5951;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 50%;
+        }
+        
+        .personBox .col-md-12:nth-child(1) span {
+            font-weight: 600;
+        }
+        
+        .personBox .col-md-12:nth-last-child(1) {
+            text-align: center
+        }
+        
+        .personBox .col-md-12:nth-last-child(1) button:nth-child(1) {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li class="active">个人信息</li>
+    </ol>
+    <div class="row Modular">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading yellow">
+                    <div>个人信息</div>
+                </div>
+                <div class="panel-body">
+                    <div class="personBox">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img src="../img/touxiang.png" alt="">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                <span class="name">李警官</span>
+                                <input type="text" class="hidden">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>警号</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>职务</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>单位电话</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>联系电话</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>系统登录名</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>密码</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-blue btn-lang">确认</button>
+                                <button class="btn btn-blue-border btn-lang">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script>
+        $(".name").click(function() {
+            $(this).addClass("hidden").next().removeClass("hidden")
+        })
+        $(".name").next().blur(function() {
+            $(this).addClass("hidden").prev().html($(this).val()).removeClass("hidden")
+        })
+    </script>
+</body>
+
+</html>

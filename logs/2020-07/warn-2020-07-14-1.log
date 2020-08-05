@@ -1,0 +1,6 @@
+[13:35:40:120] [WARN] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Cannot deserialize session attribute [listDictItem] for session [BAE12A069BA08E25D0D74DDD6605D094]
+[13:35:40:146] [WARN] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Cannot deserialize session attribute [org.apache.shiro.subject.support.DefaultSubjectContext_PRINCIPALS_SESSION_KEY] for session [BAE12A069BA08E25D0D74DDD6605D094]
+[13:35:42:249] [WARN] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:61) - Unable to start LiveReload server
+[18:36:21:511] [WARN] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Cannot deserialize session attribute [listDictItem] for session [276D64E6BD27D05A46AA066F0993091F]
+[18:36:21:525] [WARN] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Cannot deserialize session attribute [org.apache.shiro.subject.support.DefaultSubjectContext_PRINCIPALS_SESSION_KEY] for session [276D64E6BD27D05A46AA066F0993091F]
+[18:36:23:283] [WARN] - org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer.startServer(OptionalLiveReloadServer.java:61) - Unable to start LiveReload server

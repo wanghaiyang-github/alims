@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bazl.alims.dao.LimsCaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.bazl.alims.model.po.LimsCaseInfo" >
+    <id column="CASE_ID" property="caseId" jdbcType="VARCHAR" />
+    <result column="CASE_NO" property="caseNo" jdbcType="VARCHAR" />
+    <result column="MAJOR_TYPE" property="majorType" jdbcType="VARCHAR" />
+    <result column="MAJOR_NO" property="majorNo" jdbcType="VARCHAR" />
+    <result column="CASE_XK_NO" property="caseXkNo" jdbcType="VARCHAR" />
+    <result column="CASE_NAME" property="caseName" jdbcType="VARCHAR" />
+    <result column="CASE_BRIEF" property="caseBrief" jdbcType="VARCHAR" />
+    <result column="CASE_LOCATION" property="caseLocation" jdbcType="VARCHAR" />
+    <result column="CASE_DATETIME" property="caseDatetime" jdbcType="TIMESTAMP" />
+    <result column="CASE_TYPE" property="caseType" jdbcType="VARCHAR" />
+    <result column="CASE_PROPERTY" property="caseProperty" jdbcType="VARCHAR" />
+    <result column="CASE_LEVEL" property="caseLevel" jdbcType="VARCHAR" />
+    <result column="CASE_REMARK" property="caseRemark" jdbcType="VARCHAR" />
+    <result column="CASE_URGENT_FLAG" property="caseUrgentFlag" jdbcType="VARCHAR" />
+    <result column="CASE_STATUS" property="caseStatus" jdbcType="VARCHAR" />
+    <result column="HAS_APPEND_FLAG" property="hasAppendFlag" jdbcType="VARCHAR" />
+    <result column="FIRST_CHECKER" property="firstChecker" jdbcType="VARCHAR" />
+    <result column="SERVER_NO" property="serverNo" jdbcType="VARCHAR" />
+    <result column="INSTORED_FLAG" property="instoredFlag" jdbcType="VARCHAR" />
+    <result column="CREATE_DATETIME" property="createDatetime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATETIME" property="updateDatetime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_PERSON" property="updatePerson" jdbcType="VARCHAR" />
+    <result column="DELETE_FLAG" property="deleteFlag" jdbcType="VARCHAR" />
+    <result column="DELETE_DATETIME" property="deleteDatetime" jdbcType="TIMESTAMP" />
+    <result column="DELETE_PERSON" property="deletePerson" jdbcType="VARCHAR" />
+    <result column="DELETE_REASON" property="deleteReason" jdbcType="VARCHAR" />
+    <result column="IS_HOMICIDE_FLAG" property="isHomicideFlag" jdbcType="VARCHAR" />
+    <result column="IS_CRIMINAL_FLAG" property="isCriminalFlag" jdbcType="VARCHAR" />
+    <result column="RESULT_QUERY_SN" property="resultQuerySn" jdbcType="VARCHAR" />
+    <result column="RESULT_QUERY_CAPTCHA" property="resultQueryCaptcha" jdbcType="VARCHAR" />
+    <result column="CONSIGNATION_XK_NO" property="consignationXkNo" jdbcType="VARCHAR" />
+    <result column="XK_ANO" property="xkAno" jdbcType="VARCHAR" />
+      <result column="ENTRUST_STATUS" property="entrustStatus" jdbcType="VARCHAR" />
+  </resultMap>
+
+    <resultMap id="VOBaseResultMap" type="com.bazl.alims.model.vo.LimsCaseInfoVo" >
+        <id column="CASE_ID" property="entity.caseId" jdbcType="VARCHAR" />
+        <result column="CASE_NO" property="entity.caseNo" jdbcType="VARCHAR" />
+        <result column="MAJOR_TYPE" property="entity.majorType" jdbcType="VARCHAR" />
+        <result column="MAJOR_NO" property="entity.majorNo" jdbcType="VARCHAR" />
+        <result column="CASE_XK_NO" property="entity.caseXkNo" jdbcType="VARCHAR" />
+        <result column="CASE_NAME" property="entity.caseName" jdbcType="VARCHAR" />
+        <result column="CASE_BRIEF" property="entity.caseBrief" jdbcType="VARCHAR" />
+        <result column="CASE_LOCATION" property="entity.caseLocation" jdbcType="VARCHAR" />
+        <result column="CASE_DATETIME" property="entity.caseDatetime" jdbcType="TIMESTAMP" />
+        <result column="CASE_TYPE" property="entity.caseType" jdbcType="VARCHAR" />
+        <result column="CASE_PROPERTY" property="entity.caseProperty" jdbcType="VARCHAR" />
+        <result column="CASE_LEVEL" property="entity.caseLevel" jdbcType="VARCHAR" />
+        <result column="CASE_REMARK" property="entity.caseRemark" jdbcType="VARCHAR" />
+        <result column="CASE_URGENT_FLAG" property="entity.caseUrgentFlag" jdbcType="VARCHAR" />
+        <result column="CASE_STATUS" property="entity.caseStatus" jdbcType="VARCHAR" />
+        <result column="HAS_APPEND_FLAG" property="entity.hasAppendFlag" jdbcType="VARCHAR" />
+        <result column="FIRST_CHECKER" property="entity.firstChecker" jdbcType="VARCHAR" />
+        <result column="SERVER_NO" property="entity.serverNo" jdbcType="VARCHAR" />
+        <result column="INSTORED_FLAG" property="entity.instoredFlag" jdbcType="VARCHAR" />
+        <result column="CREATE_DATETIME" property="entity.createDatetime" jdbcType="TIMESTAMP" />
+        <result column="CREATE_PERSON" property="entity.createPerson" jdbcType="VARCHAR" />
+        <result column="UPDATE_DATETIME" property="entity.updateDatetime" jdbcType="TIMESTAMP" />
+        <result column="UPDATE_PERSON" property="entity.updatePerson" jdbcType="VARCHAR" />
+        <result column="DELETE_FLAG" property="entity.deleteFlag" jdbcType="VARCHAR" />
+        <result column="DELETE_DATETIME" property="entity.deleteDatetime" jdbcType="TIMESTAMP" />
+        <result column="DELETE_PERSON" property="entity.deletePerson" jdbcType="VARCHAR" />
+        <result column="DELETE_REASON" property="entity.deleteReason" jdbcType="VARCHAR" />
+        <result column="IS_HOMICIDE_FLAG" property="entity.isHomicideFlag" jdbcType="VARCHAR" />
+        <result column="IS_CRIMINAL_FLAG" property="entity.isCriminalFlag" jdbcType="VARCHAR" />
+        <result column="RESULT_QUERY_SN" property="entity.resultQuerySn" jdbcType="VARCHAR" />
+        <result column="RESULT_QUERY_CAPTCHA" property="entity.resultQueryCaptcha" jdbcType="VARCHAR" />
+        <result column="ENTRUST_STATUS" property="entity.entrustStatus" jdbcType="VARCHAR" />
+        <!-- 业务字段 -->
+        <result column="CONSIGNMENT_ID" property="consignmentId" jdbcType="VARCHAR" />
+        <result column="CONSIGNMENT_NO" property="consignmentNo" jdbcType="VARCHAR" />
+        <result column="DELEGATOR1_ID" property="delegator1Id" jdbcType="VARCHAR" />
+        <result column="DELEGATOR1_NAME" property="delegator1Name" jdbcType="VARCHAR" />
+        <result column="DELEGATOR2_ID" property="delegator2Id" jdbcType="VARCHAR" />
+        <result column="DELEGATOR2_NAME" property="delegator2Name" jdbcType="VARCHAR" />
+        <result column="DELEGATE_DATETIME" property="delegateDatetime" jdbcType="TIMESTAMP" />
+        <result column="DELEGATE_ORG_CODE" property="delegateOrgCode" jdbcType="VARCHAR" />
+        <result column="DELEGATE_ORG_NAME" property="delegateOrgName" jdbcType="VARCHAR" />
+        <result column="CASE_TYPE_NAME" property="caseTypeName" jdbcType="TIMESTAMP" />
+        <result column="CASE_PROPERTY_NAME" property="casePropertyName" jdbcType="TIMESTAMP" />
+        <result column="CASE_STATUS_NAME" property="caseStatusName" jdbcType="TIMESTAMP" />
+        <result column="CREATE_PERSON" property="createPerson" jdbcType="VARCHAR" />
+        <result column="CREATE_DATETIME" property="createDatetime" jdbcType="VARCHAR" />
+        <result column="APPEND_FLAG" property="appendFlag" jdbcType="VARCHAR" />
+        <result column="STATUS" property="status" jdbcType="VARCHAR" />
+        <result column="ACCEPT_ORG_ID" property="acceptOrgId" jdbcType="VARCHAR" />
+        <result column="REPLACEMENT_NUM" property="replacementNum" jdbcType="INTEGER" />
+        <result column="ACCEPTOR_ID" property="acceptorId" jdbcType="VARCHAR" />
+        <result column="AREA_ORG_CODE" property="areaOrgCode" jdbcType="VARCHAR" />
+        <result column="ACCEPT_DATETIME" property="acceptDatetime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+  <insert id="insertCaseInfo" parameterType="com.bazl.alims.model.po.LimsCaseInfo" >
+    insert into LIMS_CASE_INFO (CASE_ID, CASE_NO, MAJOR_TYPE,
+      MAJOR_NO, CASE_XK_NO, CASE_NAME,
+      CASE_BRIEF, CASE_LOCATION, CASE_DATETIME,
+      CASE_TYPE, CASE_PROPERTY, CASE_LEVEL,
+      CASE_REMARK, CASE_URGENT_FLAG, CASE_STATUS,
+      HAS_APPEND_FLAG, FIRST_CHECKER, SERVER_NO,
+      INSTORED_FLAG, CREATE_DATETIME, CREATE_PERSON,
+      UPDATE_DATETIME, UPDATE_PERSON, DELETE_FLAG,
+      DELETE_DATETIME, DELETE_PERSON, DELETE_REASON,
+      IS_HOMICIDE_FLAG, IS_CRIMINAL_FLAG, RESULT_QUERY_SN, ENTRUST_STATUS,
+      RESULT_QUERY_CAPTCHA, CONSIGNATION_XK_NO, XK_ANO)
+    values (#{caseId,jdbcType=VARCHAR}, #{caseNo,jdbcType=VARCHAR}, #{majorType,jdbcType=VARCHAR},
+      #{majorNo,jdbcType=VARCHAR}, #{caseXkNo,jdbcType=VARCHAR}, #{caseName,jdbcType=VARCHAR},
+      #{caseBrief,jdbcType=VARCHAR}, #{caseLocation,jdbcType=VARCHAR}, #{caseDatetime,jdbcType=TIMESTAMP},
+      #{caseType,jdbcType=VARCHAR}, #{caseProperty,jdbcType=VARCHAR}, #{caseLevel,jdbcType=VARCHAR},
+      #{caseRemark,jdbcType=VARCHAR}, #{caseUrgentFlag,jdbcType=VARCHAR}, #{caseStatus,jdbcType=VARCHAR},
+      #{hasAppendFlag,jdbcType=VARCHAR}, #{firstChecker,jdbcType=VARCHAR}, #{serverNo,jdbcType=VARCHAR},
+      #{instoredFlag,jdbcType=VARCHAR}, #{createDatetime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR},
+      #{updateDatetime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=VARCHAR},
+      #{deleteDatetime,jdbcType=TIMESTAMP}, #{deletePerson,jdbcType=VARCHAR}, #{deleteReason,jdbcType=VARCHAR},
+      #{isHomicideFlag,jdbcType=VARCHAR}, #{isCriminalFlag,jdbcType=VARCHAR}, #{resultQuerySn,jdbcType=VARCHAR}, #{entrustStatus,jdbcType=VARCHAR},
+      #{resultQueryCaptcha,jdbcType=VARCHAR}, #{consignationXkNo,jdbcType=VARCHAR}, #{xkAno,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="deleteCaseInfo" parameterType="com.bazl.alims.model.po.LimsCaseInfo">
+    update LIMS_CASE_INFO lc set lc.DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+    lc.DELETE_DATETIME = #{deleteDatetime,jdbcType=TIMESTAMP},
+    lc.DELETE_PERSON = #{deletePerson,jdbcType=VARCHAR} where lc.case_id = #{caseId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectByCaseId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select lc.* from LIMS_CASE_INFO lc where lc.case_id = #{caseId,jdbcType=VARCHAR} and lc.delete_flag = '0'
+  </select>
+
+    <select id="selectByCaseXkNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select lc.*  from LIMS_CASE_INFO lc left join lims_consignment_info lci on lc.case_id = lci.case_id where lc.delete_flag = '0'
+        <if test="caseXkNo != null">
+            and lc.CASE_XK_NO = #{caseXkNo,jdbcType=VARCHAR}
+        </if>
+        <if test="acceptOrgId != null">
+            and lci.ACCEPT_ORG_ID = #{acceptOrgId,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+  <select id="selectCountByCaseStatus" parameterType="com.bazl.alims.model.vo.LimsCaseInfoVo" resultType="int">
+    select count(lc.CASE_ID) from LIMS_CASE_INFO lc left join lims_consignment_info lci on lc.case_id = lci.case_id
+      where lc.delete_flag = '0' and lci.delete_flag = '0' and lci.delegate_org_code = #{delegateOrgCode, jdbcType=VARCHAR} and lci.APPEND_FLAG = '0'
+    <if test="status != null">
+      and lci.status = #{status, jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="selectMonthCountByYear" parameterType="java.lang.String" resultType="java.util.Map">
+    select nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 01, count(lc.case_id))), 0) c1,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 02, count(lc.case_id))), 0) c2,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 03, count(lc.case_id))), 0) c3,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 04, count(lc.case_id))), 0) c4,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 05, count(lc.case_id))), 0) c5,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 06, count(lc.case_id))), 0) c6,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 07, count(lc.case_id))), 0) c7,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 08, count(lc.case_id))), 0) c8,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 09, count(lc.case_id))), 0) c9,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 10, count(lc.case_id))), 0) c10,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 11, count(lc.case_id))), 0) c11,
+           nvl(MAX(decode(to_char(lc.create_datetime, 'MM'), 12, count(lc.case_id))), 0) c12
+      from LIMS_CASE_INFO lc left join lims_consignment_info lci on lc.case_id = lci.case_id
+     where lc.delete_flag = '0' and lci.delete_flag = '0' and lci.delegate_org_code = #{delegateOrgCode, jdbcType=VARCHAR} and lci.APPEND_FLAG = '0'
+      <if test="year != null">
+        and to_char(lc.create_datetime, 'yyyy') = #{year, jdbcType=VARCHAR}
+      </if>
+     group by to_char(lc.create_datetime, 'MM')
+  </select>
+
+
+  <update id="updateCaseInfoDna" parameterType="com.bazl.alims.model.po.LimsCaseInfo" >
+    update LIMS_CASE_INFO
+    set CASE_NO = #{caseNo,jdbcType=VARCHAR},
+    MAJOR_TYPE = #{majorType,jdbcType=VARCHAR},
+    MAJOR_NO = #{majorNo,jdbcType=VARCHAR},
+      <if test="null != caseXkNo">
+          CASE_XK_NO = #{caseXkNo,jdbcType=VARCHAR},
+      </if>
+    CASE_NAME = #{caseName,jdbcType=VARCHAR},
+    CASE_BRIEF = #{caseBrief,jdbcType=VARCHAR},
+    CASE_LOCATION = #{caseLocation,jdbcType=VARCHAR},
+    CASE_DATETIME = #{caseDatetime,jdbcType=TIMESTAMP},
+    CASE_TYPE = #{caseType,jdbcType=VARCHAR},
+    CASE_PROPERTY = #{caseProperty,jdbcType=VARCHAR},
+    CASE_LEVEL = #{caseLevel,jdbcType=VARCHAR},
+    CASE_REMARK = #{caseRemark,jdbcType=VARCHAR},
+    CASE_URGENT_FLAG = #{caseUrgentFlag,jdbcType=VARCHAR},
+    CASE_STATUS = #{caseStatus,jdbcType=VARCHAR},
+    HAS_APPEND_FLAG = #{hasAppendFlag,jdbcType=VARCHAR},
+    FIRST_CHECKER = #{firstChecker,jdbcType=VARCHAR},
+    SERVER_NO = #{serverNo,jdbcType=VARCHAR},
+    INSTORED_FLAG = #{instoredFlag,jdbcType=VARCHAR},
+    CREATE_DATETIME = #{createDatetime,jdbcType=TIMESTAMP},
+    CREATE_PERSON = #{createPerson,jdbcType=VARCHAR},
+    UPDATE_DATETIME = #{updateDatetime,jdbcType=TIMESTAMP},
+    UPDATE_PERSON = #{updatePerson,jdbcType=VARCHAR},
+    DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+    DELETE_DATETIME = #{deleteDatetime,jdbcType=TIMESTAMP},
+    DELETE_PERSON = #{deletePerson,jdbcType=VARCHAR},
+    DELETE_REASON = #{deleteReason,jdbcType=VARCHAR},
+    IS_HOMICIDE_FLAG = #{isHomicideFlag,jdbcType=VARCHAR},
+    IS_CRIMINAL_FLAG = #{isCriminalFlag,jdbcType=VARCHAR},
+    RESULT_QUERY_SN = #{resultQuerySn,jdbcType=VARCHAR},
+    RESULT_QUERY_CAPTCHA = #{resultQueryCaptcha,jdbcType=VARCHAR},
+    <if test="null != consignationXkNo">
+        CONSIGNATION_XK_NO = #{consignationXkNo,jdbcType=VARCHAR},
+    </if>
+    XK_ANO = #{xkAno,jdbcType=VARCHAR}
+    where CASE_ID = #{caseId,jdbcType=VARCHAR}
+  </update>
+
+    <!--查询与补送list-->
+    <select id="selectVOPaginationList" parameterType="com.bazl.alims.model.vo.LimsCaseInfoVo" resultMap="VOBaseResultMap">
+        select * from (
+        select rownum as rn, t.* from (
+        select lc.CASE_ID, lc.CASE_NO, lc.MAJOR_TYPE, lc.MAJOR_NO, lc.CASE_XK_NO, lc.CASE_NAME, lc.CASE_BRIEF, lc.CASE_LOCATION, lc.CASE_DATETIME,
+        lc.CASE_TYPE, lc.CASE_PROPERTY, lc.CASE_STATUS,lc.CASE_LEVEL, lc.CASE_REMARK,
+        lc.CASE_URGENT_FLAG, lc.HAS_APPEND_FLAG, lc.FIRST_CHECKER, lc.SERVER_NO, lc.INSTORED_FLAG, lc.CREATE_DATETIME, lc.CREATE_PERSON,
+        lc.UPDATE_DATETIME, lc.UPDATE_PERSON,lc.ENTRUST_STATUS,
+        lc.DELETE_FLAG, lc.DELETE_DATETIME, lc.DELETE_PERSON, lc.DELETE_REASON, lc.IS_HOMICIDE_FLAG, lc.IS_CRIMINAL_FLAG, lc.RESULT_QUERY_SN,
+        lc.RESULT_QUERY_CAPTCHA, di_2.dict_name as CASE_TYPE_NAME, di_1.dict_name as CASE_PROPERTY_NAME, di_3.dict_name as CASE_STATUS_NAME,
+        lci.CONSIGNMENT_ID as CONSIGNMENT_ID,
+        lci.CONSIGNMENT_NO as CONSIGNMENT_NO,
+        lci.DELEGATOR1_ID as DELEGATOR1_ID,
+        lci.DELEGATOR1_NAME as DELEGATOR1_NAME,
+        lci.DELEGATOR2_ID as DELEGATOR2_ID,
+        lci.DELEGATOR2_NAME as DELEGATOR2_NAME,
+        lci.DELEGATE_ORG_CODE as DELEGATE_ORG_CODE,
+        lci.DELEGATE_ORG_NAME as DELEGATE_ORG_NAME,
+        lci.DELEGATE_DATETIME as DELEGATE_DATETIME,
+        lci.APPEND_FLAG as APPEND_FLAG,
+        lci.STATUS as STATUS,
+        lci.ACCEPT_ORG_ID as ACCEPT_ORG_ID,
+        lci.REPLACEMENT_NUM as REPLACEMENT_NUM,
+        lci.ACCEPTOR_ID as ACCEPTOR_ID,
+        lci.ACCEPT_DATETIME as ACCEPT_DATETIME
+        from lims_case_info lc
+        left join lims_consignment_info lci
+        on lci.CASE_ID = lc.case_id
+        left join dict_item di_1 on di_1.dict_code = lc.CASE_PROPERTY and di_1.DICT_TYPE_CODE='CASE_PROPERTY'
+        left join dict_item di_2 on di_2.dict_code = lc.CASE_TYPE and di_2.DICT_TYPE_CODE='CASE_TYPE'
+        left join dict_item di_3 on di_3.dict_code = lci.STATUS and di_3.DICT_TYPE_CODE='CASE_STATUS'
+        where lci.delete_flag = '0'
+        and lc.delete_flag = '0'
+        and lci.APPEND_FLAG = '0'
+        <if test="_parameter != null">
+            <include refid="VO_Query_Where_Clause"/>
+        </if>
+        order by lci.ACCEPT_DATETIME desc
+        ) t where  rownum &lt;=#{rows}
+        ) where rn &gt;#{offset}
+    </select>
+    <!--查询与补送count-->
+    <select id="selectVOCount" parameterType="com.bazl.alims.model.vo.LimsCaseInfoVo" resultType="int">
+        SELECT count(lci.CONSIGNMENT_ID) from lims_case_info lc
+        left join lims_consignment_info lci
+        on lci.CASE_ID = lc.case_id
+        where lci.DELETE_FLAG='0' and lc.DELETE_FLAG = '0' and lci.APPEND_FLAG = '0'
+        <if test="_parameter != null">
+            <include refid="VO_Query_Where_Clause"/>
+        </if>
+    </select>
+
+    <sql id="VO_Query_Where_Clause">
+        <if test="delegateOrgCode != null">
+            and lci.delegate_org_code = #{delegateOrgCode,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null">
+            <if test="status == 02">
+                and lci.STATUS in ('02')
+            </if>
+            <if test="status == 01">
+                and lci.STATUS in ('01')
+            </if>
+            <if test="status == 03">
+                and lci.STATUS in ('03')
+            </if>
+            <if test="status == 04">
+                and lci.STATUS in ('04')
+            </if>
+            <if test="status == 05">
+                and lci.STATUS in ('05')
+            </if>
+        </if>
+        <if test="entity.caseName != null">
+            and lc.CASE_NAME like '%'||#{entity.caseName,jdbcType=VARCHAR}||'%'
+        </if>
+        <if test="entity.caseNo != null">
+            and lc.CASE_NO like '%'||#{entity.caseNo,jdbcType=VARCHAR}||'%'
+        </if>
+        <if test="entity.caseXkNo != null">
+            and lc.CASE_XK_NO  like '%'||#{entity.caseXkNo,jdbcType=VARCHAR}||'%'
+        </if>
+        <if test="entity.caseProperty != null">
+            and lc.CASE_PROPERTY = #{entity.caseProperty,jdbcType=VARCHAR}
+        </if>
+        <choose>
+            <when test="entity.caseType != null and entity.caseType != ''">
+                and lc.CASE_TYPE = #{entity.caseType,jdbcType=VARCHAR}
+            </when>
+            <otherwise>
+                and lc.CASE_TYPE ='01'
+            </otherwise>
+        </choose>
+        <if test="delegator1Name != null">
+            and (lci.DELEGATOR1_NAME like '%'||#{delegator1Name,jdbcType=VARCHAR}||'%' or lci.DELEGATOR2_NAME like '%'||#{delegator1Name,jdbcType=VARCHAR}||'%')
+        </if>
+
+        <if test="delegateStartDatetime != null">
+            and lci.DELEGATE_DATETIME &gt;= #{delegateStartDatetime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="delegateEndDatetime != null">
+            and TO_CHAR(lci.DELEGATE_DATETIME,'yyyy-MM-dd') &lt;= TO_CHAR(#{delegateEndDatetime,jdbcType=TIMESTAMP},'yyyy-MM-dd')
+        </if>
+        <if test="acceptOrgId != null">
+            and lci.ACCEPT_ORG_ID = #{acceptOrgId,jdbcType=VARCHAR}
+        </if>
+        <if test="entity.entrustStatus != null">
+            and lc.ENTRUST_STATUS = #{entity.entrustStatus,jdbcType=VARCHAR}
+        </if>
+        <if test="xkStatus != null">
+            <if test="xkStatus == 02">
+                and lc.CASE_XK_NO is null
+            </if>
+            <if test="xkStatus == 01">
+                and lc.CASE_XK_NO is not null
+            </if>
+        </if>
+    </sql>
+
+    <update id="updateHasAppendFlagByCaseId" parameterType="com.bazl.alims.model.po.LimsCaseInfo">
+        UPDATE  lims_case_info lc set lc.HAS_APPEND_FLAG = #{hasAppendFlag,jdbcType=VARCHAR},lc.CREATE_PERSON=#{createPerson,jdbcType=VARCHAR}
+        where lc.CASE_ID = #{caseId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectReplacementRecord" parameterType="com.bazl.alims.model.vo.LimsCaseInfoVo" resultMap="VOBaseResultMap">
+        select lc.CASE_ID, lc.CASE_NO, lc.MAJOR_TYPE, lc.MAJOR_NO, lc.CASE_XK_NO, lc.CASE_NAME, lc.CASE_BRIEF, lc.CASE_LOCATION, lc.CASE_DATETIME,
+        lc.CASE_TYPE, lc.CASE_PROPERTY, lc.CASE_STATUS,lc.CASE_LEVEL, lc.CASE_REMARK,
+        lc.CASE_URGENT_FLAG, lc.HAS_APPEND_FLAG, lc.FIRST_CHECKER, lc.SERVER_NO, lc.INSTORED_FLAG, lc.CREATE_DATETIME, lc.CREATE_PERSON,
+        lc.UPDATE_DATETIME, lc.UPDATE_PERSON,lc.ENTRUST_STATUS,
+        lc.DELETE_FLAG, lc.DELETE_DATETIME, lc.DELETE_PERSON, lc.DELETE_REASON, lc.IS_HOMICIDE_FLAG, lc.IS_CRIMINAL_FLAG, lc.RESULT_QUERY_SN,
+        lc.RESULT_QUERY_CAPTCHA, di_1.dict_name as CASE_STATUS_NAME,
+        lci.CONSIGNMENT_ID as CONSIGNMENT_ID,
+        lci.CONSIGNMENT_NO as CONSIGNMENT_NO,
+        lci.CREATE_PERSON as CREATE_PERSON,
+        lci.CREATE_DATETIME as CREATE_DATETIME,
+        lci.DELEGATOR1_NAME as DELEGATOR1_NAME,
+        lci.DELEGATOR2_NAME as DELEGATOR2_NAME,
+        lci.DELEGATE_DATETIME as DELEGATE_DATETIME
+        from lims_case_info lc
+        left join lims_consignment_info lci
+        on lci.CASE_ID = lc.case_id
+        left join dict_item di_1 on di_1.dict_code = lci.STATUS and di_1.DICT_TYPE_CODE='CASE_STATUS'
+        where lci.delete_flag = '0' and lc.delete_flag = '0'
+        and lc.CASE_ID = #{entity.caseId,jdbcType=VARCHAR}
+        and lci.APPEND_FLAG = '1'
+    </select>
+
+    <!--通用查询list-->
+    <select id="selectCaseQueryInfoList" parameterType="com.bazl.alims.model.vo.LimsCaseInfoVo" resultMap="VOBaseResultMap">
+        select * from (
+        select rownum as rn, t.* from (
+        select lc.CASE_ID, lc.CASE_NO, lc.MAJOR_TYPE, lc.MAJOR_NO, lc.CASE_XK_NO, lc.CASE_NAME, lc.CASE_BRIEF, lc.CASE_LOCATION, lc.CASE_DATETIME,
+        lc.CASE_TYPE, lc.CASE_PROPERTY, lc.CASE_STATUS,lc.CASE_LEVEL, lc.CASE_REMARK,
+        lc.CASE_URGENT_FLAG, lc.HAS_APPEND_FLAG, lc.FIRST_CHECKER, lc.SERVER_NO, lc.INSTORED_FLAG, lc.CREATE_DATETIME, lc.CREATE_PERSON,
+        lc.UPDATE_DATETIME, lc.UPDATE_PERSON,lc.ENTRUST_STATUS,
+        lc.DELETE_FLAG, lc.DELETE_DATETIME, lc.DELETE_PERSON, lc.DELETE_REASON, lc.IS_HOMICIDE_FLAG, lc.IS_CRIMINAL_FLAG, lc.RESULT_QUERY_SN,
+        lc.RESULT_QUERY_CAPTCHA, di_2.dict_name as CASE_TYPE_NAME, di_1.dict_name as CASE_PROPERTY_NAME, di_3.dict_name as CASE_STATUS_NAME,
+        lci.CONSIGNMENT_ID as CONSIGNMENT_ID,
+        lci.CONSIGNMENT_NO as CONSIGNMENT_NO,
+        lci.DELEGATOR1_ID as DELEGATOR1_ID,
+        lci.DELEGATOR1_NAME as DELEGATOR1_NAME,
+        lci.DELEGATOR2_ID as DELEGATOR2_ID,
+        lci.DELEGATOR2_NAME as DELEGATOR2_NAME,
+        lci.DELEGATE_ORG_CODE as DELEGATE_ORG_CODE,
+        lci.DELEGATE_ORG_NAME as DELEGATE_ORG_NAME,
+        lci.DELEGATE_DATETIME as DELEGATE_DATETIME,
+        lci.APPEND_FLAG as APPEND_FLAG,
+        lci.STATUS as STATUS,
+        lci.ACCEPT_ORG_ID as ACCEPT_ORG_ID,
+        lci.REPLACEMENT_NUM as REPLACEMENT_NUM,
+        lci.ACCEPTOR_ID as ACCEPTOR_ID,
+        lci.AREA_ORG_CODE as AREA_ORG_CODE
+        from lims_case_info lc
+        left join lims_consignment_info lci
+        on lci.CASE_ID = lc.case_id
+        left join dict_item di_1 on di_1.dict_code = lc.CASE_PROPERTY and di_1.DICT_TYPE_CODE='CASE_PROPERTY'
+        left join dict_item di_2 on di_2.dict_code = lc.CASE_TYPE and di_2.DICT_TYPE_CODE='CASE_TYPE'
+        left join dict_item di_3 on di_3.dict_code = lci.STATUS and di_3.DICT_TYPE_CODE='CASE_STATUS'
+        where lci.delete_flag = '0'
+        and lc.delete_flag = '0'
+        <if test="areaOrgCode != null">
+            and lci.AREA_ORG_CODE like '%'|| #{areaOrgCode,jdbcType=VARCHAR} ||'%'
+        </if>
+        <!--and lc.CASE_STATUS &lt;&gt; '05'*/
+        and lci.delegate_org_code = #{delegateOrgCode,jdbcType=VARCHAR}-->
+        <if test="_parameter != null">
+            <include refid="VO_Query_Where_Clause"/>
+        </if>
+        order by lci.DELEGATE_DATETIME desc nulls last, lc.CASE_NO desc
+        ) t where  rownum &lt;=#{rows}
+        ) where rn &gt;#{offset}
+    </select>
+    <!--通用查询count-->
+    <select id="selectCaseQueryVOCount" parameterType="com.bazl.alims.model.vo.LimsCaseInfoVo" resultType="int">
+        SELECT count(lci.CONSIGNMENT_ID) from lims_case_info lc
+        left join lims_consignment_info lci
+        on lci.CASE_ID = lc.case_id
+        where lci.DELETE_FLAG='0' and lc.DELETE_FLAG = '0'
+        <if test="areaOrgCode != null">
+            and lci.AREA_ORG_CODE like '%'|| #{areaOrgCode,jdbcType=VARCHAR} ||'%'
+        </if>
+        <!--and lci.delegate_org_code = #{delegateOrgCode,jdbcType=VARCHAR}-->
+        <if test="_parameter != null">
+            <include refid="VO_Query_Where_Clause"/>
+        </if>
+    </select>
+    <select id="queryXkNoCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT (*) FROM lims_case_info WHERE CASE_XK_NO=#{caseXkNo,jdbcType=VARCHAR} AND DELETE_FLAG='0'
+    </select>
+
+
+    <!--定时任务，查询所有新系统案件信息-->
+    <select id="selectAllCase" parameterType="com.bazl.alims.model.po.LimsCaseInfo" resultMap="BaseResultMap">
+        select  t.case_no,t.case_xk_no,t.consignation_xk_no,t.xk_ano,lci.delegate_org_code as delegateOrgCode from lims_case_info t  left join lims_consignment_info lci on t.case_id = lci.case_id  where (t.case_xk_no &lt;&gt;'无' or t.case_xk_no is not null)
+        and (t.xk_ano is null or t.xk_ano ='无') and t.case_datetime >= to_date('2019-01-01','yyyy-MM-dd') and lci.append_flag='0'
+        union
+        select  t.case_no,t.case_xk_no,t.consignation_xk_no,t.xk_ano,lci.delegate_org_code as delegateOrgCode  from lims_case_info t  left join lims_consignment_info lci on t.case_id = lci.case_id where (t.case_xk_no&lt;&gt;'无' or t.case_xk_no is not null)
+        and (t.consignation_xk_no is null or t.consignation_xk_no ='无') and t.case_datetime >= to_date('2019-01-01','yyyy-MM-dd') and lci.append_flag='0'
+    </select>
+
+
+
+    <update id="updateCaseXAno" parameterType="com.bazl.alims.model.po.LimsCaseInfo">
+        UPDATE  lims_case_info lc set
+        lc.XK_ANO = #{xkAno,jdbcType=VARCHAR}
+        <if test="null != consignationXkNo">
+            ,lc.CONSIGNATION_XK_NO = #{consignationXkNo,jdbcType=VARCHAR}
+        </if>
+        where lc.CASE_XK_NO = #{caseXkNo,jdbcType=VARCHAR}
+    </update>
+
+
+    <!--定时任务，更新物证检材编号-->
+    <select id="selectAllConsignmentId" parameterType="com.bazl.alims.model.vo.LimsCaseInfoVo" resultMap="VOBaseResultMap">
+        select * from (
+        select rownum as rn, t.* from (
+        select  t.CASE_ID,t.case_no,t.case_xk_no,t.consignation_xk_no,t.xk_ano,lci.delegate_org_code,lci.CONSIGNMENT_ID
+        from lims_case_info t
+        left join lims_consignment_info lci on t.case_id = lci.case_id  where t.CREATE_DATETIME &gt;= to_date('2019-04-01','yyyy-MM-dd')
+        and (t.case_xk_no &lt;&gt;'无' or t.case_xk_no is not null)
+        and lci.append_flag='0'
+        ) t where  rownum &lt;=#{rows}
+        ) where rn &gt;#{offset}
+    </select>
+
+
+
+</mapper>

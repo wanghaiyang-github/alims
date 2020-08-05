@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../lib/jquery.searchableSelect/jquery.searchableSelect.css">
+    <link rel="stylesheet" href="../../lib/bootstrap-fileinput-master/css/fileinput.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/scroll.css">
+    <link rel="stylesheet" href="../../css/button.css">
+    <link rel="stylesheet" href="../../css/form.css">
+    <link rel="stylesheet" href="../../css/table.css">
+    <link rel="stylesheet" href="../../css/pop.css">
+    <style>
+        .centerInformation {
+            background: #f5f5f5;
+            padding: 25px;
+            position: relative;
+        }
+
+        .centerInformation .caret {
+            position: absolute;
+            transform: rotate(180deg);
+            top: -8px;
+            left: 20%;
+            margin-left: -8px;
+            color: #f5f5f5;
+            border-top: 8px dashed;
+            border-right: 8px solid transparent;
+            border-left: 8px solid transparent;
+        }
+
+        .centerInformation p {
+            font-weight: 600;
+        }
+
+        .centerInformation p span {
+            font-weight: 400;
+        }
+
+        .centerInformation p:nth-last-child(2) span {
+            color: #ff7a74
+        }
+
+        .personCard {
+            border: 1px dashed #7cbaf9;
+            padding: 0 20px;
+            position: relative;
+            padding-top: 60px;
+            width: 47%;
+            margin: 0 20px;
+        }
+
+        .personCard > img {
+            position: absolute;
+            width: 100px;
+            top: -50px;
+            left: 50%;
+            margin-left: -50px;
+        }
+    </style>
+</head>
+<!-- 修改现堪编号 -->
+<div class="modal fade popBox smallBox" id="siteSurveyBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">输入现堪编号</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <button class="btn btn-lang pull-left btn-blue modifySiteSurve">确认</button>
+                <button type="button" class="btn btn-lang pull-right btn-blue-border" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 被鉴定人信息 -->
+<div class="modal fade popBox xsBox" id="authenticatorBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">被鉴定人信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>人员类型</label>
+
+                    <div class="select">
+                        <select class="form-control" required name="personnelType">
+                            <option value="" disabled selected hidden>请选择人员类型</option>
+                            <option value="嫌疑人">嫌疑人</option>
+                            <option value="嫌疑人亲属">嫌疑人亲属</option>
+                            <option value="受害人">受害人</option>
+                            <option value="受害人亲属">受害人亲属</option>
+                            <option value="失踪人员">失踪人员</option>
+                            <option value="失踪人员亲属">失踪人员亲属</option>
+                            <option value="其它人员">其它人员</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>人员名称</label>
+                    <input type="text" class="form-control" placeholder="请输入人员名称" name="personnelName">
+                </div>
+                <div class="form-group">
+                    <label>性别</label>
+                    <label class="radio-inline radio-sex">
+                        <input type="radio" class="sex sexman" value="男" name="sex">男性
+                    </label>
+                    <label class="radio-inline  radio-sex">
+                        <input type="radio" class="sex sexwoman" value="女" name="sex">女性
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>身份证号</label>
+
+                    <div class="row">
+                        <div class="col-md-8 nopadding">
+                            <input type="text" class="form-control" placeholder="请输入身份证号" name="idCard">
+                        </div>
+                        <div class="col-md-4 nopadding">
+                            <label class="custom-control checkbox-inline">
+                                <input class="custom-control-input" type="checkbox" name="noIdCheck">
+                                <span class="custom-control-label">无</span>
+                            </label>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control hidden" placeholder="请输入无身份证号原因" style="margin-top: 5px;"
+                           name="noIdCard">
+                </div>
+                <div class="form-group">
+                    <label>年龄</label>
+                    <input type="text" class="form-control" placeholder="请输入年龄" name="year">
+                </div>
+                <div class="form-group">
+                    <label>住址</label>
+                    <input type="text" class="form-control" placeholder="请输入住址" name="address">
+                </div>
+                <div class="form-group hidden">
+                    <label>亲缘关系</label>
+
+                    <div class="select">
+                        <select class="form-control" required name="kinship">
+                            <option value="" disabled selected hidden>请选择亲缘关系</option>
+                            <option value="父母">父母</option>
+                            <option value="配偶">配偶</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <input type="hidden" name="index">
+                <button class="btn btn-lang btn-blue pull-left addAuthenticator">确认</button>
+                <button type="button" class="btn btn-lang pull-right btn-blue-border" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 样本信息 -->
+<div class="modal fade popBox bigBox" id="personnelSampleBox" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">人员样本信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>样本类型</label>
+
+                            <div class="select">
+                                <select class="form-control" required name="sampleType">
+                                    <option value="" disabled selected hidden>请选择样本类型</option>
+                                    <option value="血液">血液</option>
+                                    <option value="精斑">精斑</option>
+                                    <option value="毛发">毛发</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>样本名称</label>
+                            <input type="text" class="form-control" placeholder="请输入样本名称" name="sampleName">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>包装</label>
+
+                            <div class="select">
+                                <select class="form-control" required name="samplePacking">
+                                    <option value="" disabled selected hidden>请选择样本包装</option>
+                                    <option value="试管">试管</option>
+                                    <option value="FTA卡">FTA卡</option>
+                                    <option value="棉签">棉签</option>
+                                    <option value="其他">其他</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="form-group">
+                            <label>样本单位</label>
+                            <div class="select">
+                                <select class="form-control" required name="sampleCompany">
+                                    <option value="" disabled selected hidden>请选择样本单位</option>
+                                    <option value="份">份</option>
+                                    <option value="ml">ml</option>
+                                    <option value="张">张</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>提取时间</label>
+                            <input type="text" class="form-control" placeholder="请输入提取时间" name="extractTime">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>提取方法</label>
+                            <input type="text" class="form-control" placeholder="请输入提取方法" name="extractMethod">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>送检目的</label>
+                            <textarea class="form-control" rows="3" placeholder="请输入送检目的"
+                                      name="inspectionObjective"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>样本描述</label>
+                            <textarea class="form-control" rows="3" placeholder="请输入样本描述"
+                                      name="sampleDescribe"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <input type="hidden" name="index">
+                <button class="btn btn-lang  btn-blue addPersonnelSample">确认</button>
+                <button type="button" class="btn btn-lang btn-blue-border" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 检材信息 -->
+<div class="modal fade popBox bigBox" id="materialEvidencerlSampleBox" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">物证检材信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>检材类型</label>
+
+                            <div class="select">
+                                <select class="form-control" required name="sampleType">
+                                    <option value="" disabled selected hidden>请选择检材类型</option>
+                                    <option value="血液">血液</option>
+                                    <option value="精斑">精斑</option>
+                                    <option value="毛发">毛发</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>检材名称</label>
+                            <input type="text" class="form-control" placeholder="请输入检材名称" name="sampleName">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>包装方法</label>
+
+                            <div class="select">
+                                <select class="form-control" required name="samplePacking">
+                                    <option value="" disabled selected hidden>请选择检材包装</option>
+                                    <option value="试管">试管</option>
+                                    <option value="FTA卡">FTA卡</option>
+                                    <option value="棉签">棉签</option>
+                                    <option value="其他">其他</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>检材单位</label>
+
+                            <div class="select">
+                                <select class="form-control" required name="sampleCompany">
+                                    <option value="" disabled selected hidden>请选择检材单位</option>
+                                    <option value="份">份</option>
+                                    <option value="ml">ml</option>
+                                    <option value="张">张</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>提取时间</label>
+                            <input type="text" class="form-control" placeholder="请输入提取时间" name="extractTime">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>提取方法</label>
+                            <input type="text" class="form-control" placeholder="请输入提取方法" name="extractMethod">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>送检目的</label>
+                            <textarea class="form-control" rows="3" placeholder="请输入送检目的"
+                                      name="inspectionObjective"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>检材描述</label>
+                            <textarea class="form-control" rows="3" placeholder="请输入检材描述"
+                                      name="sampleDescribe"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <input type="hidden" name="index">
+                <button class="btn btn-lang  btn-blue addMaterialEvidencerlSample">确认</button>
+                <button type="button" class="btn btn-lang btn-blue-border" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 保存弹窗 -->
+<div class="modal fade popBox saveBox" id="saveBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">确认鉴定中心</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row inputBox">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>案件名称 :</label>
+                            <label>昌平区长兴路抢劫案</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row inputBox">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>案件基本情况 :</label>
+                            <label>XXXXXXXXXXXXXXXXXXXXXX</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row inputBox">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>委托时间 :</label>
+                            <label>2018-01-01</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row inputBox">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>鉴定中心 :</label>
+                            <label class="identificationCenter">北京市法医中心</label>
+                            <button class="btn btn-blue-border pull-right savechange" style="margin-top: -10px;">选择
+                            </button>
+                            <div class="selectbox hidden" style="right:-54px;">
+                                <span class="caret"></span>
+                                <ul>
+                                    <li>昌平分局鉴定中心</li>
+                                    <li>北京市法医中心</li>
+                                </ul>
+                            </div>
+                            <div class="centerInformation">
+                                <span class="caret"></span>
+
+                                <div>
+                                    <p>中心地址 : <span>昌平区XXXXXXXXX</span></p>
+
+                                    <p>联系方式 : <span>010-11223310/</span><span>010-11223310</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer clearfix">
+                    <button class="btn btn-lang  btn-blue modifySiteSurve">确认</button>
+                    <button type="button" class="btn btn-lang  btn-blue-border" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 委托人添加 -->
+<div class="modal fade popBox xsBox" id="addClientBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">委托人信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>委托人姓名</label>
+                    <input type="text" class="form-control" placeholder="请输入委托人姓名" name="clientName">
+                </div>
+                <div class="form-group">
+                    <label>职务</label>
+                    <input type="text" class="form-control" placeholder="请输入职务" name="clientDuties">
+                </div>
+                <div class="form-group">
+                    <label>联系方式</label>
+                    <input type="text" class="form-control" placeholder="请输入职务" name="clientPhone">
+                </div>
+                <div class="form-group">
+                    <label>证件类型</label>
+
+                    <div class="select">
+                        <select class="form-control" required name="clientIdType">
+                            <option value="" disabled selected hidden>请选择证件类型</option>
+                            <option value="警官证">警官证</option>
+                            <option value="身份证">身份证</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>证件号</label>
+                    <input type="text" class="form-control" placeholder="请输入证件号" name="clientId">
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <input type="hidden" name="index">
+                <button class="btn btn-lang btn-blue pull-left addClient">确认</button>
+                <button type="button" class="btn btn-lang pull-right btn-blue-border" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 上传图片 -->
+<div class="modal fade popBox bigBox" id="addphotoBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">物证检材信息</h4>
+            </div>
+            <div class="modal-body" style="padding: 20px 42px;">
+                <form enctype="multipart/form-data">
+                    <div class="file-loading">
+                        <input id="file-fr" name="file-fr[]" type="file" multiple>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body>
+<ol class="breadcrumb">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">案件委托登记</a></li>
+    <li class="active">DNA鉴定</li>
+</ol>
+<div class="row fixedBox hidden">
+    <ul>
+        <li class="success">委托信息</li>
+        <li class="error">案件信息</li>
+        <li class="now">鉴定要求</li>
+        <li>被鉴定人信息</li>
+        <li>样本信息</li>
+        <li>检材信息</li>
+    </ul>
+</div>
+<div class="row Modular">
+    <div class="col-md-6 starBox">
+        <p class="starP">
+            <i class="fa fa-star star" aria-hidden="true"></i>鉴定类别:<span>DNA鉴定</span>
+        </p>
+    </div>
+    <div class="col-md-6 starBox">
+        <p class="starP">
+            <i class="fa fa-star star" aria-hidden="true"></i>现堪编号:<span>XK-23456</span>
+            <button class="btn btn-blue" data-toggle="modal" data-target="#siteSurveyBox">修改</button>
+        </p>
+    </div>
+</div>
+<div class="row Modular">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading blue">
+                <div>委托信息</div>
+            </div>
+            <div class="panel-body">
+                <div class="row inputBox">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>委托单位 :</label>
+                            <label>北市西城分局</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">所属辖区 :</label>
+
+                            <div class="col-sm-9" style="margin-top: -7px;">
+                                <div class="select">
+                                    <select class="form-control" required>
+                                        <option value="" disabled selected hidden>请选择所属辖区</option>
+                                        <option>厂桥派出所</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row inputBox">
+                    <div class="col-md-12" style="margin-top: 60px;">
+                        <div class="col-md-6 personCard">
+                            <img src="../../img/touxiang1.png" alt="">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>姓名</label>
+
+                                        <div class="select">
+                                            <select class="form-control clientSelect" required>
+                                                <option value="" disabled selected hidden>请选委托人1</option>
+                                                <option>张翼德</option>
+                                                <option>赵云</option>
+                                                <option>张飞</option>
+                                                <option>刘备</option>
+                                                <option value="other">其他</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>职务</label>
+                                        <input type="text" class="form-control" name="clientDuties" readonly value="民警">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>证件</label>
+                                        <input type="text" class="form-control" name="clientIdType" readonly
+                                               value="警官证">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>证件号</label>
+                                        <input type="text" class="form-control" name="clientId" readonly
+                                               value="123456789">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>电话</label>
+                                        <input type="text" class="form-control" name="clientPhone" readonly
+                                               value="13289871122">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 personCard">
+                            <img src="../../img/touxiang1.png" alt="">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>姓名</label>
+
+                                        <div class="select">
+                                            <select class="form-control clientSelect" required>
+                                                <option value="" disabled selected hidden>请选委托人1</option>
+                                                <option>张翼德</option>
+                                                <option>赵云</option>
+                                                <option>张飞</option>
+                                                <option>刘备</option>
+                                                <option value="other">其他</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>职务</label>
+                                        <input type="text" class="form-control" name="clientDuties" readonly value="民警">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>证件</label>
+                                        <input type="text" class="form-control" name="clientIdType" readonly
+                                               value="警官证">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>证件号</label>
+                                        <input type="text" class="form-control" name="clientId" readonly
+                                               value="123456789">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>电话</label>
+                                        <input type="text" class="form-control" name="clientPhone" readonly
+                                               value="13289871122">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row inputBox">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>通讯地址</label>
+                            <i class="required">*</i>
+                            <input type="text" class="form-control" placeholder="请输入通讯地址">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>邮政编号</label>
+                            <input type="text" class="form-control" placeholder="请输入邮政编号">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>传真号码</label>
+                            <input type="text" class="form-control" placeholder="请输入传真号码">
+                        </div>
+                    </div>
+                </div>
+                <div class="row inputBox">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>原鉴定情况(鉴定单位及结论)</label>
+                            <i class="required">*</i>
+                            <textarea class="form-control" rows="3" placeholder="请输入鉴定情况"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>重新鉴定原因</label>
+                            <textarea class="form-control" rows="3" placeholder="请输入鉴定原因"></textarea>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row Modular">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading yellow">
+                <div>案件信息</div>
+                <!-- <label class="custom-control checkbox-inline">
+                    <input class="custom-control-input" type="checkbox">
+                    <span class="custom-control-label" style="color: #ff5951">是否加急</span>
+                </label> -->
+            </div>
+            <div class="panel-body">
+                <div class="row inputBox">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>案件名称</label>
+                            <i class="required">*</i>
+                            <input type="text" class="form-control" placeholder="请输入案件名称">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>案发地点</label>
+                            <input type="text" class="form-control" placeholder="请输入案发地点">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>案发时间</label>
+                            <input type="text" class="form-control" placeholder="请输入案发时间" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>案件类型</label>
+
+                            <div class="select">
+                                <select class="form-control" required>
+                                    <option value="" disabled selected hidden>请选择案件类型</option>
+                                    <option>刑事案件</option>
+                                    <option>民事案件</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>案发性质</label>
+
+                            <div class="select">
+                                <select class="form-control" required>
+                                    <option value="" disabled selected hidden>请选择案发性质</option>
+                                    <option>抢劫</option>
+                                    <option>强奸</option>
+                                    <option>盗窃</option>
+                                    <option>杀人</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>案件级别</label>
+
+                            <div class="select">
+                                <select class="form-control" required>
+                                    <option value="" disabled selected hidden>请选择案件级别</option>
+                                    <option>一般</option>
+                                    <option>特大</option>
+                                    <option>重大</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row inputBox">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>简要案情</label>
+                            <i class="required">*</i>
+                            <textarea class="form-control" rows="3" placeholder="请输入简要案情"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>其他说明</label>
+                            <textarea class="form-control" rows="3" placeholder="请输入其他说明"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row Modular">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading red">
+                <div>鉴定要求</div>
+                <button class="btn btn-blue checkboxAll">全选</button>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <ul class="btn-checkbox clearfix">
+                                <li class="pull-left active">同一鉴定</li>
+                                <li class="pull-left">亲缘鉴定</li>
+                                <!-- <li class="pull-left other" data-toggle="modal" data-target="#appraisalRequirementsBox">其他</li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row Modular">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading green">
+                <div>被鉴定人信息</div>
+                <button class="btn btn-blue" data-toggle="modal" data-target="#authenticatorBox">添加</button>
+            </div>
+            <div class="panel-body nopadding">
+                <table class="table table-hover table-bordered bigTable">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>人员类型</th>
+                        <th>人员名称</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>住址</th>
+                        <th>身份证号</th>
+                        <th>亲缘关系</th>
+                        <th>添加人员检材</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="authenticatorTbody">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row Modular">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading blue">
+                <div>样本信息</div>
+                <!-- <button class="btn btn-blue" data-toggle="modal" data-target="#materialEvidencerBox">添加</button> -->
+            </div>
+            <div class="panel-body nopadding">
+                <table class="table table-hover table-bordered bigTable">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>样本类型</th>
+                        <th>样本名称</th>
+                        <th>样本描述</th>
+                        <th>包装方法</th>
+                        <th>样本单位</th>
+                        <th>提取时间</th>
+                        <th>提取方法</th>
+                        <th>送检目的</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody >
+                    <tr>
+                        <!--<td>1</td>-->
+                        <!--<td>血液<input type="hidden" name="sampleType" value="血液"></td>-->
+                        <!--<td>样本名称<input type="hidden" name="sampleName" value="样本名称"></td>-->
+                        <!--<td>样本描述<input type="hidden" name="sampleDescribe" value="样本描述"></td>-->
+                        <!--<td>试管<input type="hidden" name="samplePacking" value="试管"></td>-->
+                        <!--<td>ml<input type="hidden" name="sampleCompany" value="ml"></td>-->
+                        <!--<td>提取时间<input type="hidden" name="extractTime" value="提取时间"></td>-->
+                        <!--<td>提取方法<input type="hidden" name="extractMethod" value="提取方法"></td>-->
+                        <!--<td>送检目的<input type="hidden" name="inspectionObjective" value="送检目的"></td>-->
+                        <!--<td>-->
+                            <!--<button class="btn-icon btn-icon-blue btn-icon-bianji-blue edit">编辑</button>-->
+                            <!--<button class="btn-icon btn-icon-red btn-icon-shanchu-red remove">删除</button>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row Modular">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading yellow">
+                <div>检材信息</div>
+                <!-- <button class="btn btn-blue" data-toggle="modal" data-target="#materialEvidencerBox">添加</button> -->
+            </div>
+            <div class="panel-body nopadding">
+                <table class="table table-hover table-bordered bigTable">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>样本类型</th>
+                        <th>样本名称</th>
+                        <th>样本描述</th>
+                        <th>包装方法</th>
+                        <th>样本单位</th>
+                        <th>提取时间</th>
+                        <th>提取方法</th>
+                        <th>送检目的</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="materialEvidencerTbody">
+                    <tr>
+                        <td>1</td>
+                        <td>血液<input type="hidden" name="sampleType" value="血液"></td>
+                        <td>样本名称<input type="hidden" name="sampleName" value="样本名称"></td>
+                        <td>样本描述<input type="hidden" name="sampleDescribe" value="样本描述"></td>
+                        <td>试管<input type="hidden" name="samplePacking" value="试管"></td>
+                        <td>ml<input type="hidden" name="sampleCompany" value="ml"></td>
+                        <td>提取时间<input type="hidden" name="extractTime" value="提取时间"></td>
+                        <td>提取方法<input type="hidden" name="extractMethod" value="提取方法"></td>
+                        <td>送检目的<input type="hidden" name="inspectionObjective" value="送检目的"></td>
+                        <td>
+                            <button class="btn-icon btn-icon-blue btn-icon-bianji-blue edit">编辑</button>
+                            <button class="btn-icon btn-icon-red btn-icon-shanchu-red remove">删除</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row btn-box ">
+    <div class="col-md-12">
+        <button class="btn btn-blue btn-lang" data-toggle="modal" data-target="#saveBox">提交</button>
+        <button class="btn btn-blue-border btn-lang">取消</button>
+    </div>
+</div>
+<script src="../../lib/jquery/jquery-3.2.1.min.js"></script>
+<script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="../../lib/bootstrap-fileinput-master/js/fileinput.js"></script>
+<script src="../../lib/bootstrap-fileinput-master/js/locales/zh.js"></script>
+<script src="../../lib/jquery.searchableSelect/jquery.searchableSelect.js"></script>
+<script>
+    $(function () {
+        $('#file-fr').fileinput({
+            theme: 'fas',
+            language: 'zh',
+            uploadUrl: '#',
+            allowedFileExtensions: ['jpg', 'png', 'gif']
+        });
+        $(".clientSelect").searchableSelect();
+        $(".clientSelect").change(function () {
+            if ($(this).val() == "other") {
+                $("#addClientBox").modal('show')
+                $("#addClientBox").find("input[name='index']").val($(this).parents(".personCard").index())
+            }
+        })
+        $(".addClient").click(function () {
+            var clientName = $("#addClientBox").find("input[name='clientName']").val()
+            var clientDuties = $("#addClientBox").find("input[name='clientDuties']").val()
+            var clientIdType = $("#addClientBox").find("select[name='clientIdType']").val()
+            var clientId = $("#addClientBox").find("input[name='clientId']").val()
+            var clientPhone = $("#addClientBox").find("input[name='clientPhone']").val()
+            var index = $("#addClientBox").find("input[name='index']").val()
+            $(".personCard").eq(index).find(".clientSelect").find("option[value='other']").before(
+                    "<option selected>" + clientName + "</option>")
+            $(".personCard").eq(index).find(".clientSelect").next().remove()
+            $(".personCard").eq(index).find("input[name='clientPhone']").val(clientPhone)
+            $(".personCard").eq(index).find("input[name='clientDuties']").val(clientDuties)
+            $(".personCard").eq(index).find("input[name='clientIdType']").val(clientIdType)
+            $(".personCard").eq(index).find("input[name='clientId']").val(clientId)
+            $(".personCard").eq(index).find(".clientSelect").searchableSelect();
+
+            $("#addClientBox").modal('hide')
+        })
+        $('#addClientBox').on('hidden.bs.modal', function (e) {
+            $("#addClientBox").find("input").val("")
+            $("#addClientBox").find("select").val("")
+        })
+        $(".savechange").click(function () {
+            $(".selectbox").eq(0).removeClass("hidden")
+        })
+        $(".selectbox").on('click', 'li', function () {
+            $('.identificationCenter').html($(this).html())
+            $(this).parents(".selectbox").addClass("hidden")
+        })
+        // 鉴定要求边距
+        $(".btn-checkbox").children().each(function (i) {
+            if (i > 0 && $(this).position().left == 0) {
+                $(this).css("margin-left", '0')
+            }
+        })
+        // 鉴定要求点击效果
+        $(".btn-checkbox").on("click", 'li', function () {
+            if ($(this).hasClass("active")) {
+                $(this).removeClass("active")
+            } else {
+                $(this).addClass("active")
+            }
+        })
+        // 鉴定要求全选
+        $(".checkboxAll").click(function () {
+            if ($(".btn-checkbox").children(".active").length == $(".btn-checkbox").children().length) {
+                $(".btn-checkbox").children(".active").removeClass("active")
+            } else {
+                $(".btn-checkbox").children().addClass("active")
+            }
+        })
+        //现堪修改保存
+        $(".modifySiteSurve").click(function () {
+            $(".starBox").eq(1).find("span").html($("#siteSurveyBox").find("input").val())
+            $('#siteSurveyBox').modal('hide')
+        })
+        // 现堪修改关闭清空
+        $('#siteSurveyBox').on('hidden.bs.modal', function (e) {
+            $("#siteSurveyBox").find("input").val("")
+        })
+        // 页面滚动定位
+        window.onscroll = function () {
+            if ($(document).scrollTop() >= 112) {
+                $(".fixedBox").removeClass("hidden")
+                var currentScroll = $(this).scrollTop()
+                var currentSection
+                $(".Modular").each(function () {
+                    var divPosition = $(this).offset().top - 62;
+                    if (currentScroll > divPosition) {
+                        currentSection = $(this).find(".panel-heading").children().html()
+                    }
+                })
+                $(".fixedBox").find("li").each(function () {
+                    if ($(this).html() == currentSection) {
+                        $(this).addClass("now").siblings().removeClass("now")
+                    }
+                })
+            } else {
+                $(".fixedBox").addClass("hidden")
+            }
+        }
+        // 顶部导航点击定位
+        $(".fixedBox").find("li").click(function () {
+            var that = $(this)
+            $(".Modular").each(function () {
+                if (that.html() == $(this).find(".panel-heading").children().html()) {
+                    $("html,body").animate({
+                        scrollTop: $(this).offset().top - 60
+                    }, 500);
+                }
+            })
+            that.addClass("liActive").siblings().removeClass("liActive")
+        })
+        // 被鉴定人身份证切换
+        $("#authenticatorBox").find("input[name='noIdCheck']").change(function () {
+            if ($(this).is(":checked")) {
+                $("#authenticatorBox").find("input[name='idCard']").val("").prop("disabled",
+                        true)
+                $("#authenticatorBox").find("input[name='noIdCard']").val("").removeClass(
+                        "hidden")
+            } else {
+                $("#authenticatorBox").find("input[name='idCard']").val("").prop("disabled",
+                        false)
+                $("#authenticatorBox").find("input[name='noIdCard']").val("").addClass("hidden")
+            }
+        })
+
+        function isCardNo(card) {
+            var pattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            return pattern.test(card);
+        }
+
+        // 年龄计算
+        $("#authenticatorBox").find("input[name='idCard']").blur(function () {
+            if ($.trim($(this).val()).length > 0 && isCardNo($.trim($(this).val()))) {
+                var year = Number($(this).val().substring(6, 10))
+                var myDate = new Date();
+                var Nowyear = Number(myDate.getFullYear())
+                $("#authenticatorBox").find("input[name='year']").val(Nowyear - year)
+            }
+        })
+        // 被鉴定人亲缘切换
+        $("#authenticatorBox").find("select[name='personnelType']").change(function () {
+            if ($(this).val().indexOf("亲属") != -1) {
+                var headerHtml = $(this).val().substring(0, $(this).val().indexOf("亲属"))
+                $("#authenticatorBox").find("select[name='kinship']").parents(".form-group").removeClass(
+                        "hidden").find("label").html("与" + headerHtml + "亲缘关系")
+            } else {
+                $("#authenticatorBox").find("select[name='kinship']").val("").parents(
+                        ".form-group").addClass("hidden")
+            }
+        })
+        // 上传照片弹框
+        $("#authenticatorTbody").on('click', '.addPhotoBtn', function () {
+            $("#addphotoBox").modal('show')
+        })
+
+        // 被鉴定人修改
+        $("#authenticatorTbody").on('click', '.edit', function () {
+            var personnelType = $(this).parents("tr").find('input[name="personnelType"]').val(),
+                    personnelName = $(this).parents("tr").find('input[name="personnelName"]').val(),
+                    sex = $(this).parents("tr").find('input[name="sex"]').val(),
+                    year = $(this).parents("tr").find('input[name="year"]').val(),
+                    address = $(this).parents("tr").find('input[name="address"]').val(),
+                    idCard = $(this).parents("tr").find('input[name="idCard"]').val(),
+                    noIdCard = $(this).parents("tr").find('input[name="noIdCard"]').val(),
+                    kinship = $(this).parents("tr").find('input[name="kinship"]').val(),
+                    index = $(this).parents('tr').index();
+
+            if (noIdCard) {
+                $("#authenticatorBox").find("input[type='checkbox']").prop("checked", true)
+                $("#authenticatorBox").find("input[name='noIdCard']").removeClass("hidden")
+            }
+            $("#authenticatorBox").find('select[name="personnelType"]').val(personnelType)
+            $("#authenticatorBox").find('input[name="personnelName"]').val(personnelName)
+            $("#authenticatorBox").find('input[name="sex"][value="' + sex + '"]').prop(
+                    "checked",
+                    true)
+            $("#authenticatorBox").find('input[name="year"]').val(year)
+            $("#authenticatorBox").find('input[name="address"]').val(address)
+            $("#authenticatorBox").find('input[name="idCard"]').val(idCard)
+            $("#authenticatorBox").find('input[name="noIdCard"]').val(noIdCard)
+            $("#authenticatorBox").find('select[name="kinship"]').val(kinship)
+            $("#authenticatorBox").find('input[name="index"]').val(index)
+            $("#authenticatorBox").modal('show')
+
+        })
+        // 被鉴定人保存
+        $(".addAuthenticator").click(function () {
+            var personnelType = $("#authenticatorBox").find('select[name="personnelType"]').val(),
+                    personnelName = $("#authenticatorBox").find('input[name="personnelName"]').val(),
+                    sex = $("#authenticatorBox").find('input[name="sex"]:checked').val(),
+                    year = $("#authenticatorBox").find('input[name="year"]').val(),
+                    address = $("#authenticatorBox").find('input[name="address"]').val(),
+                    idCard = $("#authenticatorBox").find('input[name="idCard"]').val(),
+                    noIdCard = $("#authenticatorBox").find('input[name="noIdCard"]').val(),
+                    kinship = $("#authenticatorBox").find('select[name="kinship"]').val(),
+                    index = $("#authenticatorBox").find('input[name="index"]').val(),
+                    length = 0,
+                    nowId = '';
+            $("#authenticatorTbody").children().each(function () {
+                if (!$(this).find("tbody").length > 0) {
+                    length += 1
+                }
+            })
+            if (noIdCard !== "") {
+                nowId = '无身份证号(' + noIdCard + ')'
+            } else {
+                nowId = idCard
+            }
+            if (index != "") {
+                // 修改
+                var tr = $("#authenticatorTbody").children("tr").eq(index)
+                tr.find('input[name="personnelType"]').val(personnelType)
+                tr.find('input[name="personnelName"]').val(personnelName)
+                tr.find('input[name="sex"]').val(sex)
+                tr.find('input[name="year"]').val(year)
+                tr.find('input[name="address"]').val(address)
+                tr.find('input[name="idCard"]').val(idCard)
+                tr.find('input[name="noIdCard"]').val(noIdCard)
+                tr.find('input[name="kinship"]').val(kinship)
+                tr.children("td").each(function () {
+                    if ($(this).children("input").length > 0) {
+                        var tdInput = $(this).children("input").clone()
+                        if (tdInput.length > 1) {
+                            if (tdInput.eq(0).val()) {
+                                $(this).html(tdInput.eq(0).val())
+                            } else {
+                                $(this).html('无身份证号(' + tdInput.eq(1).val() + ')')
+                            }
+                        } else {
+                            $(this).html(tdInput.val())
+                        }
+                        $(this).append(tdInput)
+                    }
+                })
+            } else {
+                // 新添
+                var newTr = '<tr>'
+                newTr += '<td>' + (length + 1) + '</td>'
+                newTr += '<td>' + personnelType +
+                        '<input type="hidden" name="personnelType" value=' + personnelType +
+                        '></td>'
+                newTr += '<td>' + personnelName +
+                        '<input type="hidden" name="personnelName" value=' + personnelName +
+                        '></td>'
+                newTr += '<td>' + sex + '<input type="hidden" name="sex" value=' + sex +
+                        '></td>'
+                newTr += '<td>' + year + '<input type="hidden" name="year" value=' + year +
+                        '></td>'
+                newTr += '<td>' + address + '<input type="hidden" name="address" value=' +
+                        address +
+                        '></td>'
+                newTr += '<td>' + nowId + '<input type="hidden" name="idCard" value=' + idCard +
+                        '><input type="hidden"name="noIdCard"value=' + noIdCard + '> </td>'
+                newTr += '<td>' + kinship + '<input type="hidden" name="kinship" value=' +
+                        kinship +
+                        '></td>'
+                newTr +=
+                        '<td><button class="btn btn-yellow btn-icon-bg openPersonnelSampleBox"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></td>'
+                newTr += '<td>'
+                newTr +=
+                        '<button class="btn-icon btn-icon-blue btn-icon-bianji-blue edit">编辑</button>'
+                newTr +=
+                        '<button class="btn-icon btn-icon-red btn-icon-shanchu-red remove">删除</button>'
+                newTr +=
+                        '<button class="btn-icon btn-icon-yellow  btn-icon-chakan-yellow showTable">查看检材</button>'
+                newTr +=
+                        '<button class="btn-icon btn-icon-yellow  btn-icon-chakan-yellow addPhotoBtn">上传照片</button>'
+                newTr += '</td>'
+                newTr += '</tr>'
+                $("#authenticatorTbody").append(newTr)
+            }
+            $("#authenticatorBox").modal('hide')
+        })
+        //被鉴定人关闭清空
+        $('#authenticatorBox').on('hidden.bs.modal', function (e) {
+            $("#authenticatorBox").find("input[type='text']").val("")
+            $("#authenticatorBox").find("input[type='hidden']").val("")
+            $("#authenticatorBox").find("input[type='radio']").prop("checked", false)
+            $("#authenticatorBox").find("input[type='checkbox']").prop("checked", false)
+            $("#authenticatorBox").find("input[name='noIdCard']").addClass("hidden")
+            $("#authenticatorBox").find("select").val("")
+            $("#authenticatorBox").find("select[name='kinship']").parents(".form-group").addClass(
+                    "hidden")
+        })
+        //样本展示隐藏
+        $("#authenticatorTbody").on('click', '.showTable', function () {
+            if ($(this).parents("tr").next().find('table').length > 0 && $(this).parents("tr").next()
+                            .hasClass("hidden")) {
+                $(this).parents("tr").next().removeClass("hidden").children().addClass("active")
+            } else {
+                $(this).parents("tr").next().addClass("hidden").children().removeClass("active")
+            }
+        })
+        // 人员样本添加
+        $("#authenticatorTbody").on("click", ".openPersonnelSampleBox", function () {
+            $("#personnelSampleBox").modal('show')
+            $("#personnelSampleBox").find('input[name="parentsIndex"]').val($(this).parents(
+                    "tr").index())
+        })
+        //人员样本修改
+        $("#authenticatorTbody").on("click", '.personnelSampleEdit', function () {
+            $("#personnelSampleBox").modal('show')
+            var sampleType = $(this).parents("tr").eq(0).find('input[name="sampleType"]').val(),
+                    sampleName = $(this).parents("tr").eq(0).find('input[name="sampleName"]').val(),
+                    samplePacking = $(this).parents("tr").eq(0).find('input[name="samplePacking"]')
+                            .val(),
+                    sampleCompany = $(this).parents("tr").eq(0).find('input[name="sampleCompany"]')
+                            .val(),
+                    extractTime = $(this).parents("tr").eq(0).find('input[name="extractTime"]').val(),
+                    extractMethod = $(this).parents("tr").eq(0).find('input[name="extractMethod"]')
+                            .val(),
+                    inspectionObjective = $(this).parents("tr").eq(0).find(
+                            'input[name="inspectionObjective"]').val(),
+                    sampleDescribe = $(this).parents("tr").eq(0).find(
+                            'input[name="sampleDescribe"]').val(),
+                    index = $(this).parents("tr").eq(0).index(),
+                    parentsIndex = $(this).parents("tr").eq(1).index() - 1;
+
+            $("#personnelSampleBox").find('select[name="sampleType"]').val(sampleType)
+            $("#personnelSampleBox").find('input[name="sampleName"]').val(sampleName)
+            $("#personnelSampleBox").find('select[name="samplePacking"]').val(samplePacking)
+            $("#personnelSampleBox").find('select[name="sampleCompany"]').val(sampleCompany)
+            $("#personnelSampleBox").find('input[name="extractTime"]').val(extractTime)
+            $("#personnelSampleBox").find('input[name="extractMethod"]').val(extractMethod)
+            $("#personnelSampleBox").find('textarea[name="inspectionObjective"]').val(
+                    inspectionObjective)
+            $("#personnelSampleBox").find('textarea[name="sampleDescribe"]').val(sampleDescribe)
+            $("#personnelSampleBox").find('input[name="index"]').val(index)
+            $("#personnelSampleBox").find('input[name="parentsIndex"]').val(parentsIndex)
+        })
+        //人员样本保存
+        $('.addPersonnelSample').click(function () {
+            var sampleType = $("#personnelSampleBox").find('select[name="sampleType"]').val(),
+                    sampleName = $("#personnelSampleBox").find('input[name="sampleName"]').val(),
+                    samplePacking = $("#personnelSampleBox").find('select[name="samplePacking"]').val(),
+                    sampleCompany = $("#personnelSampleBox").find('select[name="sampleCompany"]').val(),
+                    extractTime = $("#personnelSampleBox").find('input[name="extractTime"]').val(),
+                    extractMethod = $("#personnelSampleBox").find('input[name="extractMethod"]').val(),
+                    inspectionObjective = $("#personnelSampleBox").find(
+                            'textarea[name="inspectionObjective"]').val(),
+                    sampleDescribe = $("#personnelSampleBox").find(
+                            'textarea[name="sampleDescribe"]').val(),
+                    index = $("#personnelSampleBox").find('input[name="index"]').val(),
+                    parentsIndex = Number($("#personnelSampleBox").find(
+                            'input[name="parentsIndex"]').val()),
+                    length = Number($("#authenticatorTbody").children().eq(parentsIndex + 1).find(
+                                    "tbody").find("tr").length) + 1
+            if (index != "") {
+                // 修改
+                var tr = $("#authenticatorTbody").children("tr").eq(parentsIndex + 1).find(
+                        "tbody")
+                        .children().eq(index)
+                tr.find('input[name="sampleType"]').val(sampleType)
+                tr.find('input[name="sampleName"]').val(sampleName)
+                tr.find('input[name="samplePacking"]').val(samplePacking)
+                tr.find('input[name="sampleDescribe"]').val(sampleDescribe)
+                tr.find('input[name="sampleCompany"]').val(sampleCompany)
+                tr.find('input[name="extractTime"]').val(extractTime)
+                tr.find('input[name="extractMethod"]').val(extractMethod)
+                tr.find('input[name="inspectionObjective"]').val(inspectionObjective)
+                tr.children("td").each(function () {
+                    var tdInput = $(this).children("input").clone()
+                    $(this).html(tdInput.val())
+                    $(this).append(tdInput)
+                })
+            } else {
+                // 新添
+                if (!$("#authenticatorTbody").children().eq(parentsIndex + 1).find("table").length >
+                        0) {
+                    var newTable =
+                            '<tr class="hidden"><td colspan="10"><table class="table table-hover table-bordered smallTable">'
+                    newTable += "<thead><tr>"
+                    newTable += "<th>序号</th>"
+                    newTable += "<th> 样本类型</th>"
+                    newTable += "<th>样本名称</th>"
+                    newTable += "<th>样本描述</th>"
+                    newTable += "<th>包装方法</th>"
+                    newTable += "<th> 样本单位</th>"
+                    newTable += "<th>提取时间</th>"
+                    newTable += "<th> 提取方法</th>"
+                    newTable += "<th> 送检目的</th>"
+                    newTable += "<th> 操作</th>"
+                    newTable += "</thead></tr>"
+                    newTable += '<tbody><tr>'
+                    newTable += '<td>1</td>'
+                } else {
+                    var newTable = '<tr>'
+                    newTable += '<td>' + length + '</td>'
+                }
+                newTable += '<td>' + sampleType + '<input type="hidden" name="sampleType" value=' + sampleType + '></td>'
+                newTable += '<td>' + sampleName + '<input type="hidden" name="sampleName" value=' + sampleName + '></td>'
+                newTable += '<td>' + samplePacking + '<input type="hidden" name="samplePacking" value=' + samplePacking + '></td>'
+                newTable += '<td>' + sampleDescribe + '<input type="hidden" name="sampleDescribe" value=' + sampleDescribe + '></td>'
+                newTable += '<td>' + sampleCompany + '<input type="hidden" name="sampleCompany" value=' + sampleCompany + '></td>'
+                newTable += '<td>' + extractTime + '<input type="hidden" name="extractTime" value=' + extractTime + '></td>'
+                newTable += '<td>' + extractMethod + '<input type="hidden" name="extractMethod" value=' + extractMethod + '></td>'
+                newTable += '<td>' + inspectionObjective + '<input type="hidden" name="inspectionObjective" value=' + inspectionObjective + '></td>'
+                newTable += '<td>'
+                newTable += '<button class="btn-icon btn-icon-gray btn-icon-bianji-gray personnelSampleEdit">编辑</button>'
+                newTable += '<button class="btn-icon btn-icon-gray btn-icon-shanchu-gray ">删除</button>'
+                newTable += '</td>'
+                if (!$("#authenticatorTbody").children().eq(parentsIndex + 1).find("table").length >
+                        0) {
+                    newTable += '</tr></tbody>'
+                    newTable += '</table></td></tr>'
+                    $("#authenticatorTbody").children().eq(parentsIndex).after(newTable)
+                } else {
+                    newTable += '</tr>'
+                    $("#authenticatorTbody").children().eq(parentsIndex + 1).find("tbody").append(
+                            newTable)
+                }
+            }
+            $('#personnelSampleBox').modal('hide')
+        })
+        //人员样本关闭清除
+        $('#personnelSampleBox').on('hidden.bs.modal', function (e) {
+            $("#personnelSampleBox").find("input[type='text']").val("")
+            $("#personnelSampleBox").find("input[type='hidden']").val("")
+            $("#personnelSampleBox").find("select").val("")
+            $("#personnelSampleBox").find("textarea").val("")
+        })
+
+        // 检材信息
+        $("#materialEvidencerTbody").find(".edit").click(function () {
+            var sampleType = $(this).parents("tr").find('input[name="sampleType"]').val(),
+                    sampleName = $(this).parents("tr").find('input[name="sampleName"]').val(),
+                    samplePacking = $(this).parents("tr").find('input[name="samplePacking"]').val(),
+                    sampleCompany = $(this).parents("tr").find('input[name="sampleCompany"]').val(),
+                    extractTime = $(this).parents("tr").find('input[name="extractTime"]').val(),
+                    extractMethod = $(this).parents("tr").find('input[name="extractMethod"]').val(),
+                    inspectionObjective = $(this).parents("tr").find('input[name="inspectionObjective"]').val(),
+                    sampleDescribe = $(this).parents("tr").find('input[name="sampleDescribe"]').val(),
+                    index = $(this).parents("tr").index();
+            $("#materialEvidencerlSampleBox").find('select[name="sampleType"]').val(sampleType)
+            $("#materialEvidencerlSampleBox").find('input[name="sampleName"]').val(sampleName)
+            $("#materialEvidencerlSampleBox").find('select[name="samplePacking"]').val(samplePacking)
+            $("#materialEvidencerlSampleBox").find('select[name="sampleCompany"]').val(sampleCompany)
+            $("#materialEvidencerlSampleBox").find('input[name="extractTime"]').val(extractTime)
+            $("#materialEvidencerlSampleBox").find('input[name="extractMethod"]').val(extractMethod)
+            $("#materialEvidencerlSampleBox").find('textarea[name="inspectionObjective"]').val(inspectionObjective)
+            $("#materialEvidencerlSampleBox").find('textarea[name="sampleDescribe"]').val(sampleDescribe)
+            $("#materialEvidencerlSampleBox").find('input[name="index"]').val(index)
+            $("#materialEvidencerlSampleBox").modal('show')
+        })
+        $('.addMaterialEvidencerlSample').click(function () {
+            var sampleType = $("#materialEvidencerlSampleBox").find('select[name="sampleType"]').val(),
+                    sampleName = $("#materialEvidencerlSampleBox").find('input[name="sampleName"]').val(),
+                    samplePacking = $("#materialEvidencerlSampleBox").find('select[name="samplePacking"]').val(),
+                    sampleCompany = $("#materialEvidencerlSampleBox").find('select[name="sampleCompany"]').val(),
+                    extractTime = $("#materialEvidencerlSampleBox").find('input[name="extractTime"]').val(),
+                    extractMethod = $("#materialEvidencerlSampleBox").find('input[name="extractMethod"]').val(),
+                    inspectionObjective = $("#materialEvidencerlSampleBox").find('textarea[name="inspectionObjective"]').val(),
+                    sampleDescribe = $("#materialEvidencerlSampleBox").find('textarea[name="sampleDescribe"]').val(),
+                    index = $("#materialEvidencerlSampleBox").find('input[name="index"]').val();
+
+            var tr = $("#materialEvidencerTbody").children("tr").eq(index)
+            tr.find('input[name="sampleType"]').val(sampleType)
+            tr.find('input[name="sampleName"]').val(sampleName)
+            tr.find('input[name="samplePacking"]').val(samplePacking)
+            tr.find('input[name="sampleDescribe"]').val(sampleDescribe)
+            tr.find('input[name="sampleCompany"]').val(sampleCompany)
+            tr.find('input[name="extractTime"]').val(extractTime)
+            tr.find('input[name="extractMethod"]').val(extractMethod)
+            tr.find('input[name="inspectionObjective"]').val(inspectionObjective)
+            tr.children("td").each(function () {
+                var tdInput = $(this).children("input").clone()
+                $(this).html(tdInput.val())
+                $(this).append(tdInput)
+            })
+            $('#materialEvidencerlSampleBox').modal('hide')
+        })
+        $('#materialEvidencerlSampleBox').on('hidden.bs.modal', function (e) {
+            $("#materialEvidencerlSampleBox").find("input[type='text']").val("")
+            $("#materialEvidencerlSampleBox").find("input[type='hidden']").val("")
+            $("#materialEvidencerlSampleBox").find("select").val("")
+            $("#materialEvidencerlSampleBox").find("textarea").val("")
+        })
+    })
+</script>
+</body>
+
+</html>

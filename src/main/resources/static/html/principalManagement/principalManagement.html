@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/scroll.css">
+    <link rel="stylesheet" href="../../css/button.css">
+    <link rel="stylesheet" href="../../css/form.css">
+    <link rel="stylesheet" href="../../css/table.css">
+    <link rel="stylesheet" href="../../css/pop.css">
+</head>
+<div class="modal fade popBox bigBox" id="clientBox" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">委托人信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>委托人姓名</label>
+                            <input type="text" class="form-control" placeholder="请输入委托人姓名" name="clientName">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group" style="margin-top: 45px;">
+                            <label>性别</label>
+                            <label class="radio-inline radio-sex">
+                                <input type="radio" class="sex sexman" value="男" name="clientsex">男性
+                            </label>
+                            <label class="radio-inline  radio-sex">
+                                <input type="radio" class="sex sexwoman" value="女" name="clientsex">女性
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>职务</label>
+                            <input type="text" class="form-control" placeholder="请输入职务" name="clientPost">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>警号</label>
+                            <input type="text" class="form-control" placeholder="请输入警号" name="clientPoliceNum">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <input type="text" class="form-control" placeholder="请输入联系电话" name="clientPhone">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>单位电话</label>
+                            <input type="text" class="form-control" placeholder="请输入单位电话" name="workTelephone">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>登录名</label>
+                            <input type="text" class="form-control" placeholder="请输入登录名" name="loginName">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>登录密码</label>
+                            <input type="text" class="form-control" placeholder="请输入登录密码" name="password">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>权限设定 </label>
+                            <input type="text" class="form-control" placeholder="请输入权限设定	" name="jurisdiction">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer clearfix">
+                <input type="hidden" name="index">
+                <button class="btn btn-lang  btn-blue addClient">确认</button>
+                <button type="button" class="btn btn-lang btn-blue-border" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body>
+    <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li class="active">鉴定状态查询</li>
+    </ol>
+
+    <div class="row Modular">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading blue">
+                    <div>委托人管理</div>
+                    <button class="btn btn-blue" data-toggle="modal" data-target="#clientBox">添加</button>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-bordered bigTable">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>委托人姓名</th>
+                                <th>性别</th>
+                                <th>警号</th>
+                                <th>职务</th>
+                                <th>联系电话</th>
+                                <th>单位电话</th>
+                                <th>登录名</th>
+                                <th>登录密码</th>
+                                <th>权限设定</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clientTbody">
+                            <!-- <tr>
+                                <td>序号</td>
+                                <td>委托人姓名</td>
+                                <td>性别</td>
+                                <td>警号</td>
+                                <td>职务</td>
+                                <td>联系电话</td>
+                                <td>单位电话</td>
+                                <td>登录名</td>
+                                <td>登录密码</td>
+                                <td>权限设定</td>
+                                <td>
+                                    <button class="btn-icon btn-icon-blue btn-icon-bianji-blue ">编辑</button>
+                                    <button class="btn-icon btn-icon-yellow  btn-icon-chakan-yellow">禁用</button>
+                                    <button class="btn-icon btn-icon-red btn-icon-shanchu-red ">删除</button>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../../lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script>
+        $("#clientTbody").on("click", ".edit", function() {
+            var clientName = $(this).parents("tr").find("input[name='clientName']").val(),
+                clientsex = $(this).parents("tr").find("input[name='clientsex']:checked").val(),
+                clientPost = $(this).parents("tr").find("input[name='clientPost']").val(),
+                clientPoliceNum = $(this).parents("tr").find("input[name='clientPoliceNum']").val(),
+                clientPhone = $(this).parents("tr").find("input[name='clientPhone']").val(),
+                workTelephone = $(this).parents("tr").find("input[name='workTelephone']").val(),
+                loginName = $(this).parents("tr").find("input[name='loginName']").val(),
+                password = $(this).parents("tr").find("input[name='password']").val(),
+                jurisdiction = $(this).parents("tr").find("input[name='jurisdiction']").val(),
+                index = $(this).parents("tr").index();
+            $("#clientBox").find("input[name='clientName']").val(clientName)
+            $("#clientBox").find('input[name="clientsex"][value="' + clientsex + '"]').prop("checked", true)
+            $("#clientBox").find("input[name='clientPost']").val(clientPost)
+            $("#clientBox").find("input[name='clientPoliceNum']").val(clientPoliceNum)
+            $("#clientBox").find("input[name='clientPhone']").val(clientPhone)
+            $("#clientBox").find("input[name='workTelephone']").val(workTelephone)
+            $("#clientBox").find("input[name='loginName']").val(loginName)
+            $("#clientBox").find("input[name='password']").val(password)
+            $("#clientBox").find("input[name='jurisdiction']").val(jurisdiction)
+            $("#clientBox").find("input[name='index']").val(index)
+            $("#clientBox").modal('show')
+        })
+        $(".addClient").click(function() {
+            var clientName = $("#clientBox").find("input[name='clientName']").val(),
+                clientsex = $("#clientBox").find("input[name='clientsex']:checked").val(),
+                clientPost = $("#clientBox").find("input[name='clientPost']").val(),
+                clientPoliceNum = $("#clientBox").find("input[name='clientPoliceNum']").val(),
+                clientPhone = $("#clientBox").find("input[name='clientPhone']").val(),
+                workTelephone = $("#clientBox").find("input[name='workTelephone']").val(),
+                loginName = $("#clientBox").find("input[name='loginName']").val(),
+                password = $("#clientBox").find("input[name='password']").val(),
+                jurisdiction = $("#clientBox").find("input[name='jurisdiction']").val(),
+                index = $("#clientBox").find("input[name='index']").val(),
+                length = Number($("#clientTbody").children().length) + 1;
+            if (index != "") {
+                var tr = $("#clientTbody").children("tr").eq(index);
+                tr.find('input[name="clientName"]').val(clientName)
+                tr.find('input[name="clientsex"]').val(clientsex)
+                tr.find('input[name="clientPoliceNum"]').val(clientPoliceNum)
+                tr.find('input[name="clientPost"]').val(clientPost)
+                tr.find('input[name="clientPhone"]').val(clientPhone)
+                tr.find('input[name="workTelephone"]').val(workTelephone)
+                tr.find('input[name="loginName"]').val(loginName)
+                tr.find('input[name="password"]').val(password)
+                tr.find('input[name="jurisdiction"]').val(jurisdiction)
+                tr.children("td").each(function() {
+                    var tdInput = $(this).children("input").clone()
+                    $(this).html(tdInput.val())
+                    $(this).append(tdInput)
+                })
+            } else {
+                var newTr = "<tr>"
+                newTr += "<td>" + length + "</td>"
+                newTr += "<td>" + clientName + "<input type='hidden' name='clientName' value='" + clientName + "'></td>"
+                newTr += "<td>" + clientsex + "<input type='hidden' name='clientsex' value='" + clientsex + "'></td>"
+                newTr += "<td>" + clientPoliceNum + "<input type='hidden' name='clientPoliceNum' value='" + clientPoliceNum + "'></td>"
+                newTr += "<td>" + clientPost + "<input type='hidden' name='clientPost' value='" + clientPost + "'></td>"
+                newTr += "<td>" + clientPhone + "<input type='hidden' name='clientPhone' value='" + clientPhone + "'></td>"
+                newTr += "<td>" + workTelephone + "<input type='hidden' name='workTelephone' value='" + workTelephone + "'></td>"
+                newTr += "<td>" + loginName + "<input type='hidden' name='loginName' value='" + loginName + "'></td>"
+                newTr += "<td>" + password + "<input type='hidden' name='password' value='" + password + "'></td>"
+                newTr += "<td>" + jurisdiction + "<input type='hidden' name='jurisdiction' value='" + jurisdiction + "'></td>"
+                newTr += "<td>"
+                newTr += '<button class="btn-icon btn-icon-blue btn-icon-bianji-blue edit">编辑</button>'
+                newTr += '<button class="btn-icon btn-icon-yellow  btn-icon-chakan-yellow">禁用</button>'
+                newTr += '<button class="btn-icon btn-icon-red btn-icon-shanchu-red ">删除</button>'
+                newTr += "</td>"
+                newTr += "</tr>"
+                $("#clientTbody").append(newTr)
+            }
+            $("#clientBox").modal('hide')
+        })
+        $('#clientBox').on('hidden.bs.modal', function(e) {
+            $("#clientBox").find("input[type='text']").val("")
+            $("#clientBox").find("input[type='hidden']").val("")
+            $("#clientBox").find("input[type='radio']").prop("checked", false)
+            $("#clientBox").find("select").val("")
+        })
+    </script>
+</body>
+
+</html>

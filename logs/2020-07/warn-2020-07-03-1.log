@@ -1,0 +1,2 @@
+[10:31:50:148] [WARN] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Cannot deserialize session attribute [listDictItem] for session [646A337B31CEB2D825B13061A48CCF57]
+[10:31:50:164] [WARN] - org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173) - Cannot deserialize session attribute [org.apache.shiro.subject.support.DefaultSubjectContext_PRINCIPALS_SESSION_KEY] for session [646A337B31CEB2D825B13061A48CCF57]
